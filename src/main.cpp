@@ -12,16 +12,19 @@ int main() {
 
 
 
-Candidato candidato[20];
+Candidato candidato[1238];
 
 
 
-	
+	int i;
+
+	// ABERTURA DO ARQUIVO DOS CANDIDATOS(APENAS DF)
 	
 
 	ifstream cp("./data/cand_2018_DF.csv");
 
 
+	// ERRO CASO A ABERTURA FALHE 
 
 	if(!cp.is_open()){
 
@@ -31,21 +34,38 @@ Candidato candidato[20];
 	}
 
 
+//Leitura dos dados do arquivo por meio da função getline(),Feito com dois fors para evitar erro de segmentação.
+	
+
+	for(i=0;i<=600;i++){
+
+				getline(cp,candidato[i].regiao,',');
+				getline(cp,candidato[i].cargo,',');
+				getline(cp,candidato[i].numero,',');
+				getline(cp,candidato[i].nome_candidato,',');
+				getline(cp,candidato[i].numero_partido,',');
+				getline(cp,candidato[i].nome_partido,',');
 
 
 
-				getline(cp,candidato[0].regiao,',');
-				getline(cp,candidato[0].cargo,',');
-				getline(cp,candidato[0].numero,',');
-				getline(cp,candidato[0].nome_candidato,',');
-				getline(cp,candidato[0].numero_partido,',');
-				getline(cp,candidato[0].nome_partido,',');
+
+
+		}	
+
+	for(i=601;i<=1236;i++){
+
+				getline(cp,candidato[i].regiao,',');
+				getline(cp,candidato[i].cargo,',');
+				getline(cp,candidato[i].numero,',');
+				getline(cp,candidato[i].nome_candidato,',');
+				getline(cp,candidato[i].numero_partido,',');
+				getline(cp,candidato[i].nome_partido,',');
 
 
 
 
 
-			
+		}
 
 	
 
@@ -57,13 +77,9 @@ Candidato candidato[20];
 
 
 
-	cout << "regiao do candidato: "<< candidato[0].regiao << endl;
 
-	cout << "cargo do candidato: "<< candidato[0].cargo << endl;
-	cout << "numero do candidato: "<< candidato[0].numero << endl;
-	cout << "nome do candidato: "<< candidato[0].nome_candidato << endl;
-	cout << "numero partido do candidato: "<< candidato[0].numero_partido << endl;
-	cout << "nome do partido: "<< candidato[0].nome_partido << endl;
+
+		cout << "nome do candidato: "<< candidato[1236].nome_candidato << endl;
 
 
 
