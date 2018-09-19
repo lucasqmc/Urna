@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 
+
 using namespace std;
 
 class Candidato {
@@ -16,20 +17,22 @@ public:
 
 		string getNomeCandidato();
 		string getCargoCandidato();
-		int getNumeroCandidato();
-		int getNumeroPartido();
+
+		string getNumeroCandidato();
+		string getNumeroPartido();
 
 		void setNomeCandidato(string nome_candidato);
 		void setNumeroPartido(int partido);
-		void setNumeroCandidato(int numero_canditado);
+		void setNumeroCandidato(int numero);
 		void setCargo(string cargo);
 
 
 		string cargo;
 		string regiao;
-		int numero_candidato;
+		string nome_partido;
+		string numero;
 		string nome_candidato;
-		int numero_partido;
+		string numero_partido;
 
 
 

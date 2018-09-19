@@ -3,17 +3,20 @@
 
 Candidato::Candidato(){
 
-	cargo = "";
+	cargo = "VAZIO";
 
-	regiao = "";
+	regiao = "VAZIO";
 
 	nome_candidato = "VAZIO";
 
-	numero_candidato = 0000;
+	numero = "VAZIO";
 
-	numero_partido = 00;
+	numero_partido = "VAZIO";
 
-	cout<<"Candidato criado com sucesso"<<endl;
+	nome_partido = "VAZIO";
+
+	//Testando o construtor:
+	// cout<<"Candidato criado com sucesso"<<endl;
 
 }
 
@@ -29,12 +32,12 @@ string Candidato::getCargoCandidato(){
 	return cargo;
 }
 
-int Candidato::getNumeroCandidato(){
+string Candidato::getNumeroCandidato(){
 
-	return numero_candidato;
+	return numero;
 }
 
-int Candidato::getNumeroPartido(){
+string Candidato::getNumeroPartido(){
 
 	return numero_partido;
 }
