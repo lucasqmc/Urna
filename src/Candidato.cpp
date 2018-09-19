@@ -7,15 +7,17 @@ Candidato::Candidato(){
 
 	regiao = "";
 
-	nome_candidato = "";
+	nome_candidato = "VAZIO";
 
 	numero_candidato = 0000;
 
 	numero_partido = 00;
 
-
+	cout<<"Candidato criado com sucesso"<<endl;
 
 }
+
+Candidato::~Candidato(){}
 
 string Candidato::getNomeCandidato(){
 

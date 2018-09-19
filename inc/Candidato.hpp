@@ -8,10 +8,9 @@ using namespace std;
 class Candidato {
 
 
-	public:
 
 //Métodos construtor e destrutor :
-
+public:
 		Candidato();
 		~Candidato();
 
@@ -20,17 +19,14 @@ class Candidato {
 		int getNumeroCandidato();
 		int getNumeroPartido();
 
-
+		void setNomeCandidato(string nome_candidato);
 		void setNumeroPartido(int partido);
 		void setNumeroCandidato(int numero_canditado);
 		void setCargo(string cargo);
 
 
-	private:
-
 		string cargo;
 		string regiao;
-
 		int numero_candidato;
 		string nome_candidato;
 		int numero_partido;
