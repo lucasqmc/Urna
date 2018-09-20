@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include "Candidato.hpp"
+#include "Urna.hpp"
 #include <sstream>
 
 using namespace std;
@@ -11,6 +12,7 @@ int main() {
 
 
 
+Urna Urna;
 
 Candidato candidato[1238];
 
@@ -34,8 +36,8 @@ Candidato candidato[1238];
 	}
 
 
-//Leitura dos dados do arquivo por meio da função getline(),Feito com dois fors para evitar erro de segmentação.
-	
+//Leitura dos dados do arquivo por meio da função getline(),Feito com dois for's para evitar erro de segmentação.
+
 
 	for(i=0;i<=600;i++){
 
@@ -69,17 +71,17 @@ Candidato candidato[1238];
 
 	
 
-
+//Fechando arquivos dos candidatos do DF...
 
 	cp.close();
 
 	
 
 
+Urna.VotoDeputado();
 
 
-
-		cout << "nome do candidato: "<< candidato[1236].nome_candidato << endl;
+		
 
 
 
