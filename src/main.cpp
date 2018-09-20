@@ -34,39 +34,17 @@ void VotarDeputadoFed(){
 
 	}while(codigo_cand_depfed.size()!=4);
 
-		
-	for(i=0;i<=1236;i++){
 
-		if(codigo_cand_depfed == candidato[i].numero){
+	for(i=0;i<=1237;i++){
 
-			if(candidato[i].cargo == "DEPUTADO FEDERAL") {
+		if(candidato[i].numero == codigo_cand_depfed){
 
-				cout<<"Nome: "<< candidato[i].nome_candidato << endl;
-				cout<<"Regiao: "<< candidato[i].regiao << endl;
-				cout<<"Cargo: "<< candidato[i].cargo << endl;
-				cout<<"Partido: "<< candidato[i].nome_partido << endl;
-				cout<<"Numero do partido: "<<candidato[i].numero_partido << endl;
-
-
-
-			}
-
-
+			cout<< candidato[i].nome_candidato << endl;
 		}
-
-
-			else{
-
-				cout<<"Candidato Inexistente!"<<endl;
-
-				break;
-
-			}
-
-
 	}
 
 }
+
 
 
 /////////////////--------FIM DAS FUNÇÕES E COMEÇO DA MAIN--------/////////////////////
