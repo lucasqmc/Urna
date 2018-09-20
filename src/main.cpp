@@ -1,20 +1,15 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 #include "Candidato.hpp"
-#include "Urna.hpp"
 #include <sstream>
+
 
 using namespace std;
 
-
+Candidato candidato[1238];
 
 int main() {
-
-
-
-Urna Urna;
-
-Candidato candidato[1238];
 
 
 
@@ -36,7 +31,7 @@ Candidato candidato[1238];
 	}
 
 
-//Leitura dos dados do arquivo por meio da função getline(),Feito com dois for's para evitar erro de segmentação.
+//Leitura dos dados do arquivo por meio da função getline(),Feito com dois for's para evitar erro de seguimentação.
 
 
 	for(i=0;i<=600;i++){
@@ -76,14 +71,36 @@ Candidato candidato[1238];
 	cp.close();
 
 	
+//Lendo codigo do candidato:
 
 
-Urna.VotoDeputado();
+	cout<<"Deputado Federal :"<<endl;
+	string codigo_cand;
 
+	cin >> codigo_cand;
 
 		
+	for(i=0;i<=1236;i++){
+
+		if(codigo_cand == candidato[i].numero){
+
+			if(candidato[i].cargo == "DEPUTADO FEDERAL") {
+
+				cout<<"Nome do candidato: "<< candidato[i].nome_candidato << endl;
 
 
+			}
+			else{
+
+				cout<<"Inexistente"<<endl;
+
+			}
+
+
+
+		}
+
+	}
 
 
 

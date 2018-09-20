@@ -5,18 +5,17 @@ Candidato::Candidato(){
 
 	cargo = "VAZIO";
 
-	regiao = "VAZIO";
+	regiao = "";
 
-	nome_candidato = "VAZIO";
+	nome_candidato = "";
 
-	numero = "VAZIO";
+	numero = "";
 
-	numero_partido = "VAZIO";
+	numero_partido = "";
 
-	nome_partido = "VAZIO";
+	nome_partido = "";
 
-	//Testando o construtor:
-	// cout<<"Candidato criado com sucesso"<<endl;
+    //Testando o construtor:     cout<<"Candidato criado com sucesso"<<endl;
 
 }
 
