@@ -15,6 +15,8 @@ Candidato::Candidato(){
 
 	nome_partido = "";
 
+	
+
     //Testando o construtor:     cout<<"Candidato criado com sucesso"<<endl;
 
 }

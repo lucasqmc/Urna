@@ -1,19 +1,55 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
 #include "Candidato.hpp"
+#include "Eleitor.hpp"
 #include <sstream>
+#include <stdlib.h>
 
 
 using namespace std;
 
 Candidato candidato[1238];
+Eleitor eleitor[1000];
+
+
 
 ///////////////----------INICIO DAS FUNÇÕES---------///////////////////////
 
 
-//____Função para votar em Deputado Federal:____//
+
+//_____Função para configurar urna:
+
+void UrnaConfig(){
+
+
+
+	cout << "Digite o numero de eleitores que irão votar nessa urna:" << endl;
+
+	cin >> eleitor[0].numero_de_eleitores;
+
+
+
+}
+
+
+
+void PegaNomeEleitor(){
+
+
+	cout << "Nome do eleitor:"<<endl;
+
+	cin >> eleitor[eleitor[0].contaeleitor].nome_eleitor;
+
+
+	eleitor[0].contaeleitor++;
+
+}
+
+
+
+
+//____Função para votar em Deputado Federal:
 
 void VotarDeputadoFed(){
 
@@ -22,7 +58,7 @@ void VotarDeputadoFed(){
 
 	cout<<"Deputado Federal :"<<endl;
 	string codigo_cand_depfed;
-	string cmd;
+	char cmd;
 
 	int i;
 
@@ -50,6 +86,8 @@ void VotarDeputadoFed(){
 				cout<<"-------------------------------------"<<endl;
 
 				cout<<"Digite:  1-Confirmar  2-Cancelar passo  3-Votar em branco"<<endl;
+
+				cin >> cmd;
 
 				//switch (cmd) {
 //
@@ -80,6 +118,7 @@ void VotarDeputadoFed(){
 
 int main() {
 
+system("clear");
 
 	int i;
 
@@ -147,6 +186,9 @@ int main() {
 
 
 VotarDeputadoFed();
+
+
+
 
 
 	
