@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+
 #include "Candidato.hpp"
 #include <sstream>
 
@@ -12,7 +13,7 @@ Candidato candidato[1238];
 ///////////////----------INICIO DAS FUNÇÕES---------///////////////////////
 
 
-//____Função para votar em deputado federal:____//
+//____Função para votar em Deputado Federal:____//
 
 void VotarDeputadoFed(){
 
@@ -21,6 +22,7 @@ void VotarDeputadoFed(){
 
 	cout<<"Deputado Federal :"<<endl;
 	string codigo_cand_depfed;
+	string cmd;
 
 	int i;
 
@@ -39,7 +41,33 @@ void VotarDeputadoFed(){
 
 		if(candidato[i].numero == codigo_cand_depfed){
 
-			cout<< candidato[i].nome_candidato << endl;
+				cout<<"Nome: "<< candidato[i].nome_candidato << endl;
+				cout<<"Regiao: "<< candidato[i].regiao << endl;
+				cout<<"Cargo: "<< candidato[i].cargo << endl;
+				cout<<"Partido: "<< candidato[i].nome_partido << endl;
+				cout<<"Numero do partido: "<< candidato[i].numero_partido << endl;
+
+				cout<<"-------------------------------------"<<endl;
+
+				cout<<"Digite:  1-Confirmar  2-Cancelar passo  3-Votar em branco"<<endl;
+
+				//switch (cmd) {
+//
+//					case '1':
+//
+//					case '2':
+//
+//					case '3':
+//
+//
+//					default:
+//
+
+//				}
+
+
+
+
 		}
 	}
 
@@ -51,7 +79,6 @@ void VotarDeputadoFed(){
 
 
 int main() {
-
 
 
 	int i;
@@ -116,10 +143,10 @@ int main() {
 
 // Funções para votação:
 
-	VotarDeputadoFed();
+	
 
 
-
+VotarDeputadoFed();
 
 
 	
