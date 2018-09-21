@@ -7,40 +7,47 @@
 #include <stdlib.h>
 #include "LogicaUrna.hpp"
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//   Nome : Lucas Leite Macedo Maduro 
+//   Matricula : 170016811
+//   Conta GitLab : lucasqmc
 
-/////////////////--------FIM DAS FUNÇÕES E COMEÇO DA MAIN--------/////////////////////
+				//******************************************/////////////////--------URNA ELETRONICA--------/////////////////////**********************************//
 
 
 int main() {
 
 int i ;
 
+
+//Criação do objeto responsável por toda logica interna da urna :
+
 LogicaUrna logica;
 
 //Leitura dos dados do arquivo de candidatos-DF
 logica.Leitura1();
 
-//Configurações acerca da Urna:	
+//Configurações acerca da Urna :	
 
 logica.UrnaConfig();	
 
-//Limpar buffer do teclado:
-
-
-
-
+//Inicio do loop de votação :
 
 	for(i=0 ; i < logica.RetornaNumeroEleitores(); i++){
 
-		// Funções para votação:
+		// Funções para votação :
 
 	logica.PegaNomeEleitor();
 	logica.VotarDeputadoFed();
+	logica.VotarDeputadoDist();
 
 
 
 	}
+
+
+//Geração do relatório :
 
 logica.GerarRelatorio();
 	

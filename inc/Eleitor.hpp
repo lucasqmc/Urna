@@ -16,6 +16,11 @@ class Eleitor {
 
         string nome_eleitor;
         string VotoDepFed;
+        string VotoDepDist;
+        string VotoSen;
+        string VotoGov;
+        string VotoPres;
+        
         int numero_de_eleitores;  
         int contaeleitor;   
 };

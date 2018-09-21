@@ -125,8 +125,6 @@ void LogicaUrna::UrnaConfig(){
 	cin >> eleitor[0].numero_de_eleitores;
 
 
-
-
 }
 
 
@@ -178,9 +176,13 @@ void LogicaUrna::MenuPosVoto(){
 
 				
 
-					// BOTÃO CONFIRMA:	
+						
 
 					if(cmd == '1'){
+
+					// BOTÃO CONFIRMA:
+
+						cout << "VOTO CONFIRMADO !" << endl;
 
 					//Contabilizando voto do candidato:
 
@@ -191,9 +193,16 @@ void LogicaUrna::MenuPosVoto(){
 						
 					//Atribuindo nome do candidato votado ao eleitor da vez(relacionando eleitor e candidato) :
 						eleitor[eleitor[0].contaeleitor-1].VotoDepFed = candidato[candidato[0].indCandidato_em_analise].nome_candidato ;
+
 					}
 
 					else if(cmd == '2'){
+
+					// BOTÃO CANCELA:
+
+						cout << "PASSO CANCELADO" << endl;
+						
+						//Chamo novamente a função para voto :
 
 						VotarDeputadoFed();
 
@@ -244,6 +253,83 @@ int aux = 0 ;
 
 				aux = 1;
 
+					cout << "-------------------------------------" << endl;
+
+					cout<<"Nome: "<< candidato[i].nome_candidato << endl;
+					cout<<"Regiao: "<< candidato[i].regiao << endl;
+					cout<<"Cargo: "<< candidato[i].cargo << endl;
+					cout<<"Partido: "<< candidato[i].nome_partido << endl;
+					cout<<"Numero do partido: "<< candidato[i].numero_partido << endl;
+
+					cout << "-------------------------------------" << endl;
+
+					//Passando indice para o objeto candidato.
+					
+					candidato[0].indCandidato_em_analise = i;
+
+
+					MenuPosVoto();
+
+					
+
+					
+
+				
+					
+
+			}
+	
+		}
+
+		if(aux == 0){
+
+			cout << "Candidato não encontrado! tente novamente." << endl;
+
+		}
+
+	}while(aux == 0);
+
+}
+
+//_____Função para votar em deputado distrital :
+
+void LogicaUrna::VotarDeputadoDist(){
+
+//Lendo codigo do candidato:
+
+int aux = 0 ;
+
+
+	string codigo_cand_depdist;
+	int i;
+
+
+	do{
+		cout<<"Vote para Deputado Distrital :"<<endl;
+
+
+		do{
+
+			LimpaBuffer();
+	
+
+
+			cin >> codigo_cand_depdist;
+
+			if(codigo_cand_depdist.size()!=5){
+
+				cout << "Insira 5 digitos !"<<endl;
+			}
+
+		}while(codigo_cand_depdist.size()!=5);
+
+
+		for(i=0;i<=1237;i++){
+
+			if(candidato[i].numero == codigo_cand_depdist){
+
+				aux = 1;
+
 					cout<<"Nome: "<< candidato[i].nome_candidato << endl;
 					cout<<"Regiao: "<< candidato[i].regiao << endl;
 					cout<<"Cargo: "<< candidato[i].cargo << endl;
@@ -279,6 +365,14 @@ int aux = 0 ;
 	}while(aux == 0);
 
 }
+
+
+
+
+
+
+
+
 
 void LogicaUrna::GerarRelatorio(){
 int i;

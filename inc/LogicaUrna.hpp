@@ -20,6 +20,7 @@ class LogicaUrna {
         void PegaNomeEleitor();
         void MenuPosVoto();
         void VotarDeputadoFed();
+        void VotarDeputadoDist();
         void GerarRelatorio();
         int RetornaNumeroEleitores();
 
