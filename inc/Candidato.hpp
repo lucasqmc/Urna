@@ -34,6 +34,9 @@ public:
 		string numero;
 		string nome_candidato;
 		string numero_partido;
+		int indCandidato_em_analise;
+		int numero_de_votos;
+
 
 
 

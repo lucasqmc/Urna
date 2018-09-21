@@ -15,7 +15,11 @@ Candidato::Candidato(){
 
 	nome_partido = "";
 
-	
+	indCandidato_em_analise = 0;
+
+	numero_de_votos = 0;
+
+
 
     //Testando o construtor:     cout<<"Candidato criado com sucesso"<<endl;
 

@@ -24,7 +24,7 @@ Eleitor eleitor[1000];
 
 void Leitura1(){
 
-system("clear");
+	system("clear");
 
 	int i;
 
@@ -36,19 +36,19 @@ system("clear");
 
 	        // ERRO CASO A ABERTURA FALHE :
 
-	if(!cp.is_open()){
+		if(!cp.is_open()){
 
-		cout << "ERRO: NAO ABRIU" << endl ;
+			cout << "ERRO: NAO ABRIU" << endl ;
 
 
-	}
+		}
 
 
 
                //Leitura dos dados do arquivo por meio da função getline(),Feito com dois for's para evitar erro de seguimentação.
 
 
-	for(i=0;i<=600;i++){
+		for(i=0;i<=600;i++){
 
 				getline(cp,candidato[i].regiao,',');
 				getline(cp,candidato[i].cargo,',');
@@ -63,7 +63,7 @@ system("clear");
 
 		}	
 
-	for(i=601;i<=1236;i++){
+		for(i=601;i<=1236;i++){
 
 				getline(cp,candidato[i].regiao,',');
 				getline(cp,candidato[i].cargo,',');
@@ -101,44 +101,13 @@ void LimpaBuffer(){
 		cin.clear();
 		setbuf(stdin, NULL);
 
+
 		//**
 
 
 }
 
-//_____Função menu toda vez que o voto é realizado:
 
-void MenuPosVoto(){
-	char cmd;
-
-				cout<<"Digite:  1-Confirmar  2-Cancelar passo  3-Votar em branco"<<endl;
-
-
-
-				LimpaBuffer();
-
-				cmd = getchar();
-
-				switch (cmd) {
-
-					case '1':
-
-
-
-
-						cout<<"Voto Confirmado !"<<endl;
-
-					case '2': break;
-
-					case '3': break;
-
-
-					default: break;
-				}
-
-
-
-}
 
 
 //_____Função para configurar urna:
@@ -170,7 +139,44 @@ void PegaNomeEleitor(){
 	getline(cin,eleitor[eleitor[0].contaeleitor].nome_eleitor);
 
 
-	eleitor[0].contaeleitor++;
+	eleitor[0].contaeleitor++; // Essa variavel da classe eleitor é usada somente para contar em qual indice referente ao vetor dos  candidatos eu estou.
+
+}
+
+//_____Função menu toda vez que o voto é realizado:
+
+void MenuPosVoto(){
+	char cmd;
+
+				cout<<"Digite:  1-Confirmar  2-Cancelar passo  3-Votar em branco 4-Cancelar Votação"<<endl;
+
+
+
+				LimpaBuffer();
+
+				cmd = getchar();
+
+				switch (cmd) {
+
+					//BOTÃO CONFIRMA:
+
+					case '1':
+
+						candidato[0].numero_de_votos++;
+
+						cout << "Voto Confirmado !" << endl; //candidato[0].indCandidato_em_analise<<endl;
+
+					case '2': break;
+
+					case '3': break;
+
+					case '4': break;
+
+
+					default: break;
+				}
+
+
 
 }
 
@@ -184,58 +190,78 @@ void VotarDeputadoFed(){
 
 int aux = 0 ;
 
-	cout<<"Vote para Deputado Federal :"<<endl;
-	string codigo_cand_depfed;
-	
 
+	string codigo_cand_depfed;
 	int i;
 
-	do{
 
-		LimpaBuffer();
+	do{
+		cout<<"Vote para Deputado Federal :"<<endl;
+
+
+		do{
+
+			LimpaBuffer();
 	
 
 
-		cin >> codigo_cand_depfed;
+			cin >> codigo_cand_depfed;
 
-		if(codigo_cand_depfed.size()!=4){
+			if(codigo_cand_depfed.size()!=4){
 
-			cout << "Insira 4 digitos !"<<endl;
-		}
+				cout << "Insira 4 digitos !"<<endl;
+			}
 
-	}while(codigo_cand_depfed.size()!=4);
+		}while(codigo_cand_depfed.size()!=4);
 
 
-	for(i=0;i<=1237;i++){
+		for(i=0;i<=1237;i++){
 
-		if(candidato[i].numero == codigo_cand_depfed){
+			if(candidato[i].numero == codigo_cand_depfed){
 
-			aux = 1;
+				aux = 1;
 
-				cout<<"Nome: "<< candidato[i].nome_candidato << endl;
-				cout<<"Regiao: "<< candidato[i].regiao << endl;
-				cout<<"Cargo: "<< candidato[i].cargo << endl;
-				cout<<"Partido: "<< candidato[i].nome_partido << endl;
-				cout<<"Numero do partido: "<< candidato[i].numero_partido << endl;
+					cout<<"Nome: "<< candidato[i].nome_candidato << endl;
+					cout<<"Regiao: "<< candidato[i].regiao << endl;
+					cout<<"Cargo: "<< candidato[i].cargo << endl;
+					cout<<"Partido: "<< candidato[i].nome_partido << endl;
+					cout<<"Numero do partido: "<< candidato[i].numero_partido << endl;
 
-				cout<<"-------------------------------------"<<endl;
+					cout<<"-------------------------------------"<<endl;
+
+					//Passando indice ...
+					//mandar indice para algum lugar.
+
+					candidato[0].indCandidato_em_analise = i;
+
+					MenuPosVoto();
+
+					
+
+					
 
 				
-				MenuPosVoto();
+					
+
+			}
+	
+		}
+
+		if(aux == 0){
+
+			cout << "Candidato não encontrado! tente novamente." << endl;
 
 		}
-	
-	}
 
-	if(aux == 0){
+	}while(aux == 0);
 
-		cout << "Candidato não encontrado! tente novamente." << endl;
-
-	}
 
 
 
 }
+
+
+
 
 
 
@@ -254,6 +280,7 @@ UrnaConfig();
 
 //Limpar buffer do teclado:
 
+LimpaBuffer();
 fflush(stdin);
 
 
@@ -265,17 +292,11 @@ fflush(stdin);
 	VotarDeputadoFed();
 
 
+
 	}
 
 
 	
-
-
-
-
-
-
-
 	
     return 0;
 }
