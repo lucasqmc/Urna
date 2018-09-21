@@ -27,7 +27,7 @@ logica.UrnaConfig();
 
 //Limpar buffer do teclado:
 
-logica.LimpaBuffer();
+
 
 
 

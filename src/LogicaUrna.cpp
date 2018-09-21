@@ -190,7 +190,7 @@ void LogicaUrna::MenuPosVoto(){
 
 						
 					//Atribuindo nome do candidato votado ao eleitor da vez(relacionando eleitor e candidato) :
-						eleitor[eleitor[0].contaeleitor].VotoDepFed = candidato[candidato[0].indCandidato_em_analise].nome_candidato ;
+						eleitor[eleitor[0].contaeleitor-1].VotoDepFed = candidato[candidato[0].indCandidato_em_analise].nome_candidato ;
 
 
 						
@@ -289,7 +289,7 @@ int aux = 0 ;
 void LogicaUrna::GerarRelatorio(){
 int i;
 
-	for(i=0;i<=eleitor[0].numero_de_eleitores ;i++){
+	for(i=0;i<eleitor[0].numero_de_eleitores ;i++){
 
 		
 
