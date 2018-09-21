@@ -17,106 +17,9 @@ Eleitor eleitor[1000];
 ///////////////----------INICIO DAS FUNÇÕES---------///////////////////////
 
 
+//_____Função de leitura dos dados dos candidatos do DF:
 
-//_____Função para configurar urna:
-
-void UrnaConfig(){
-
-
-
-	cout << "Digite o numero de eleitores que irão votar nessa urna:" << endl;
-
-	cin >> eleitor[0].numero_de_eleitores;
-
-
-
-}
-
-
-
-void PegaNomeEleitor(){
-
-
-	cout << "Nome do eleitor:"<<endl;
-
-	cin >> eleitor[eleitor[0].contaeleitor].nome_eleitor;
-
-
-	eleitor[0].contaeleitor++;
-
-}
-
-
-
-
-//____Função para votar em Deputado Federal:
-
-void VotarDeputadoFed(){
-
-//Lendo codigo do candidato:
-
-
-	cout<<"Deputado Federal :"<<endl;
-	string codigo_cand_depfed;
-	char cmd;
-
-	int i;
-
-	do{
-		cin >> codigo_cand_depfed;
-
-		if(codigo_cand_depfed.size()!=4){
-
-			cout << "Insira 4 digitos !"<<endl;
-		}
-
-	}while(codigo_cand_depfed.size()!=4);
-
-
-	for(i=0;i<=1237;i++){
-
-		if(candidato[i].numero == codigo_cand_depfed){
-
-				cout<<"Nome: "<< candidato[i].nome_candidato << endl;
-				cout<<"Regiao: "<< candidato[i].regiao << endl;
-				cout<<"Cargo: "<< candidato[i].cargo << endl;
-				cout<<"Partido: "<< candidato[i].nome_partido << endl;
-				cout<<"Numero do partido: "<< candidato[i].numero_partido << endl;
-
-				cout<<"-------------------------------------"<<endl;
-
-				cout<<"Digite:  1-Confirmar  2-Cancelar passo  3-Votar em branco"<<endl;
-
-				cin >> cmd;
-
-				//switch (cmd) {
-//
-//					case '1':
-//
-//					case '2':
-//
-//					case '3':
-//
-//
-//					default:
-//
-
-//				}
-
-
-
-
-		}
-	}
-
-}
-
-
-
-/////////////////--------FIM DAS FUNÇÕES E COMEÇO DA MAIN--------/////////////////////
-
-
-int main() {
+void Leitura1(){
 
 system("clear");
 
@@ -136,6 +39,7 @@ system("clear");
 
 
 	}
+
 
 
 //Leitura dos dados do arquivo por meio da função getline(),Feito com dois for's para evitar erro de seguimentação.
@@ -177,15 +81,163 @@ system("clear");
 
 	cp.close();
 
+
+
+
+}
+
+
+//_____Função para limpar buffer:
+
+void LimpaBuffer(){
+
+
+
+		fflush(stdin);
+		fflush(stdin);
+		fflush(stdin);
+		fflush(stdin);
+		cin.clear();
+		setbuf(stdin, NULL);
+
+		//**
+
+
+}
+
+//_____Função menu toda vez que o voto é realizado:
+
+void MenuPosVoto(){
+	char cmd;
+
+				cout<<"Digite:  1-Confirmar  2-Cancelar passo  3-Votar em branco"<<endl;
+
+
+
+				LimpaBuffer();
+
+				cmd = getchar();
+
+				switch (cmd) {
+
+					case '1':
+
+						cout<<"Voto Confirmado !"<<endl;
+
+					case '2': break;
+
+					case '3': break;
+
+
+					default: break;
+				}
+
+
+
+}
+
+
+//_____Função para configurar urna:
+
+void UrnaConfig(){
+
+	cout << "Digite o numero de eleitores que irão votar nessa urna:" << endl;
+
+	cin >> eleitor[0].numero_de_eleitores;
+
+}
+
+
+//_____Função para ler nome do eleitor:
+
+void PegaNomeEleitor(){
+
+
+	cout << "Nome do eleitor:"<<endl;
+
+	cin >> eleitor[eleitor[0].contaeleitor].nome_eleitor;
+
+
+	eleitor[0].contaeleitor++;
+
+}
+
+
+
+//____Função para votar em Deputado Federal:
+
+void VotarDeputadoFed(){
+
+//Lendo codigo do candidato:
+
+
+	cout<<"Deputado Federal :"<<endl;
+	string codigo_cand_depfed;
 	
 
+	int i;
+
+	do{
+
+		LimpaBuffer();
+
+
+		cin >> codigo_cand_depfed;
+
+		if(codigo_cand_depfed.size()!=4){
+
+			cout << "Insira 4 digitos !"<<endl;
+		}
+
+	}while(codigo_cand_depfed.size()!=4);
+
+
+	for(i=0;i<=1237;i++){
+
+		if(candidato[i].numero == codigo_cand_depfed){
+
+				cout<<"Nome: "<< candidato[i].nome_candidato << endl;
+				cout<<"Regiao: "<< candidato[i].regiao << endl;
+				cout<<"Cargo: "<< candidato[i].cargo << endl;
+				cout<<"Partido: "<< candidato[i].nome_partido << endl;
+				cout<<"Numero do partido: "<< candidato[i].numero_partido << endl;
+
+				cout<<"-------------------------------------"<<endl;
+
+				
+				MenuPosVoto();
+
+		}
+	}
+
+}
+
+
+
+/////////////////--------FIM DAS FUNÇÕES E COMEÇO DA MAIN--------/////////////////////
+
+
+int main() {
+
+
+//Leitura dos dados do arquivo de candidatos-DF
+Leitura1();
+
+//Configurações acerca da Urna:	
+
+UrnaConfig();	
+
+//Limpar buffer do teclado:
+
+fflush(stdin);
 
 // Funções para votação:
 
-	
-
-
+PegaNomeEleitor();
 VotarDeputadoFed();
+
+
+
 
 
 
