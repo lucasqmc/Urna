@@ -257,7 +257,7 @@ UrnaConfig();
 fflush(stdin);
 
 
-	for(i=0;i<=eleitor[0].numero_de_eleitores;i++){
+	for(i=0 ; i <= eleitor[0].numero_de_eleitores - 1 ; i++){
 
 		// Funções para votação:
 
