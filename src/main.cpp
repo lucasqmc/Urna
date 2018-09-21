@@ -25,13 +25,13 @@ system("clear");
 
 	int i;
 
-	// ABERTURA DO ARQUIVO DOS CANDIDATOS(APENAS DF):
+	       // ABERTURA DO ARQUIVO DOS CANDIDATOS(APENAS DF):
 	
 
 	ifstream cp("./data/cand_2018_DF.csv");
 
 
-	// ERRO CASO A ABERTURA FALHE :
+	        // ERRO CASO A ABERTURA FALHE :
 
 	if(!cp.is_open()){
 
@@ -42,7 +42,7 @@ system("clear");
 
 
 
-//Leitura dos dados do arquivo por meio da função getline(),Feito com dois for's para evitar erro de seguimentação.
+               //Leitura dos dados do arquivo por meio da função getline(),Feito com dois for's para evitar erro de seguimentação.
 
 
 	for(i=0;i<=600;i++){
@@ -77,11 +77,9 @@ system("clear");
 
 	
 
-//Fechando arquivos dos candidatos do DF...
+	//Fechando arquivos dos candidatos do DF...
 
 	cp.close();
-
-
 
 
 }
@@ -122,6 +120,9 @@ void MenuPosVoto(){
 
 					case '1':
 
+
+
+
 						cout<<"Voto Confirmado !"<<endl;
 
 					case '2': break;
@@ -145,6 +146,9 @@ void UrnaConfig(){
 
 	cin >> eleitor[0].numero_de_eleitores;
 
+
+
+
 }
 
 
@@ -153,9 +157,14 @@ void UrnaConfig(){
 void PegaNomeEleitor(){
 
 
+	
+
 	cout << "Nome do eleitor:"<<endl;
 
-	cin >> eleitor[eleitor[0].contaeleitor].nome_eleitor;
+
+	cin.ignore();
+
+	getline(cin,eleitor[eleitor[0].contaeleitor].nome_eleitor);
 
 
 	eleitor[0].contaeleitor++;
@@ -180,6 +189,7 @@ void VotarDeputadoFed(){
 	do{
 
 		LimpaBuffer();
+	
 
 
 		cin >> codigo_cand_depfed;
@@ -219,7 +229,7 @@ void VotarDeputadoFed(){
 
 int main() {
 
-
+int i ;
 //Leitura dos dados do arquivo de candidatos-DF
 Leitura1();
 
@@ -231,13 +241,16 @@ UrnaConfig();
 
 fflush(stdin);
 
-// Funções para votação:
 
-PegaNomeEleitor();
-VotarDeputadoFed();
+	for(i=0;i<=eleitor[0].numero_de_eleitores;i++){
+
+		// Funções para votação:
+
+	PegaNomeEleitor();
+	VotarDeputadoFed();
 
 
-
+	}
 
 
 
