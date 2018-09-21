@@ -9,6 +9,9 @@
 
 using namespace std;
 
+
+///--- _*** ----  ///        Criação dos obejetos principais :           /// --- _*** ---- ///
+
 Candidato candidato[1238];
 Eleitor eleitor[1000];
 
@@ -179,6 +182,7 @@ void VotarDeputadoFed(){
 
 //Lendo codigo do candidato:
 
+int aux = 0 ;
 
 	cout<<"Deputado Federal :"<<endl;
 	string codigo_cand_depfed;
@@ -206,6 +210,8 @@ void VotarDeputadoFed(){
 
 		if(candidato[i].numero == codigo_cand_depfed){
 
+			aux = 1;
+
 				cout<<"Nome: "<< candidato[i].nome_candidato << endl;
 				cout<<"Regiao: "<< candidato[i].regiao << endl;
 				cout<<"Cargo: "<< candidato[i].cargo << endl;
@@ -218,7 +224,16 @@ void VotarDeputadoFed(){
 				MenuPosVoto();
 
 		}
+	
 	}
+
+	if(aux == 0){
+
+		cout << "Candidato não encontrado! tente novamente." << endl;
+
+	}
+
+
 
 }
 
