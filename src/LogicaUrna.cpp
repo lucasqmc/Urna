@@ -176,11 +176,11 @@ void LogicaUrna::MenuPosVoto(){
 
 				cmd = getchar();
 
-				switch (cmd) {
+				
 
 					// BOTÃO CONFIRMA:	
 
-					case '1':
+					if(cmd == '1'){
 
 					//Contabilizando voto do candidato:
 
@@ -191,19 +191,13 @@ void LogicaUrna::MenuPosVoto(){
 						
 					//Atribuindo nome do candidato votado ao eleitor da vez(relacionando eleitor e candidato) :
 						eleitor[eleitor[0].contaeleitor-1].VotoDepFed = candidato[candidato[0].indCandidato_em_analise].nome_candidato ;
+					}
 
+					else if(cmd == '2'){
 
-						
+						VotarDeputadoFed();
 
-					case '2': break;
-
-					case '3': break;
-
-					case '4': break;
-
-
-					default: break;
-				}
+					}				
 
 
 
