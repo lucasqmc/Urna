@@ -184,7 +184,7 @@ void VotarDeputadoFed(){
 
 int aux = 0 ;
 
-	cout<<"Deputado Federal :"<<endl;
+	cout<<"Vote para Deputado Federal :"<<endl;
 	string codigo_cand_depfed;
 	
 
@@ -257,7 +257,7 @@ UrnaConfig();
 fflush(stdin);
 
 
-	for(i=0 ; i <= eleitor[0].numero_de_eleitores - 1 ; i++){
+	for(i=0 ; i <= eleitor[0].numero_de_eleitores - 1; i++){
 
 		// Funções para votação:
 
@@ -266,6 +266,11 @@ fflush(stdin);
 
 
 	}
+
+
+	
+
+
 
 
 
