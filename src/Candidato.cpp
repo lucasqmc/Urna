@@ -21,6 +21,7 @@ Candidato::Candidato(){
 
 
 
+
     //Testando o construtor:     cout<<"Candidato criado com sucesso"<<endl;
 
 }

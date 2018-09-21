@@ -134,9 +134,11 @@ void PegaNomeEleitor(){
 	cout << "Nome do eleitor:"<<endl;
 
 
-	cin.ignore();
+	cin.ignore();  //Função para limpar cin 
 
 	getline(cin,eleitor[eleitor[0].contaeleitor].nome_eleitor);
+
+
 
 
 	eleitor[0].contaeleitor++; // Essa variavel da classe eleitor é usada somente para contar em qual indice referente ao vetor dos  candidatos eu estou.
@@ -158,13 +160,22 @@ void MenuPosVoto(){
 
 				switch (cmd) {
 
-					//BOTÃO CONFIRMA:
+					// BOTÃO CONFIRMA:	
 
 					case '1':
 
-						candidato[0].numero_de_votos++;
+					//Contabilizando voto do candidato:
 
-						cout << "Voto Confirmado !" << endl; //candidato[0].indCandidato_em_analise<<endl;
+						/////////INDICE(POSIÇÃO) DO CANDIDATO NO VETOR///////////////////
+						candidato[candidato[0].indCandidato_em_analise].numero_de_votos++;
+								//Variavel Acima definida em VotarDeputadoFed()//
+
+						
+					//Atribuindo nome do candidato votado ao eleitor da vez :
+						eleitor[eleitor[0].contaeleitor].VotoDepFed = candidato[candidato[0].indCandidato_em_analise].nome_candidato ;
+
+
+						
 
 					case '2': break;
 
@@ -229,10 +240,10 @@ int aux = 0 ;
 
 					cout<<"-------------------------------------"<<endl;
 
-					//Passando indice ...
-					//mandar indice para algum lugar.
-
+					//Passando indice para o objeto candidato.
+					
 					candidato[0].indCandidato_em_analise = i;
+
 
 					MenuPosVoto();
 

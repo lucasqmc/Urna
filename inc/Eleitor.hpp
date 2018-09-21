@@ -15,6 +15,7 @@ class Eleitor {
         void set_nomeEleitor(string nome);
 
         string nome_eleitor;
+        string VotoDepFed;
         int numero_de_eleitores;  
         int contaeleitor;   
 };

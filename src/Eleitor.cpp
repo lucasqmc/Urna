@@ -9,6 +9,8 @@ numero_de_eleitores = 0;
 
 contaeleitor = 0;
 
+VotoDepFed = "Ninguem";
+
 
 
 }
