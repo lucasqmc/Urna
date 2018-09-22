@@ -209,7 +209,12 @@ void LogicaUrna::MenuPosVoto(){
 
 						else if(candidato[candidato[0].indCandidato_em_analise].cargo == "SENADOR" ){
 
+
+							// Atribuindo nome dos candidatos votados  a variaveis da classe eleitor,para facilitar relatorio :
+
 							eleitor[eleitor[0].contaeleitor-1].VotoSen = candidato[candidato[0].indCandidato_em_analise].nome_candidato ;
+							eleitor[eleitor[0].contaeleitor-1].Voto1sup = candidato[candidato[1].indCandidato_em_analise].nome_candidato ;
+							eleitor[eleitor[0].contaeleitor-1].Voto2sup = candidato[candidato[2].indCandidato_em_analise].nome_candidato ;
 
 
 
@@ -503,6 +508,9 @@ int aux = 0 ;
 
 					cout<<"-------------------------------------"<<endl;
 
+
+					candidato[1].indCandidato_em_analise = i;
+
 					
 					
 			}
@@ -527,12 +535,13 @@ int aux = 0 ;
 
 					cout<<"-------------------------------------"<<endl;
 
-					
-					
+
+					candidato[2].indCandidato_em_analise = i;
+
+									
 			}
 
 
-	
 		}
 
 		MenuPosVoto();
@@ -546,12 +555,6 @@ int aux = 0 ;
 	}while(aux == 0);
 
 }
-
-
-
-
-
-
 
 
 
@@ -574,15 +577,12 @@ int i;
 
 		cout << "Deputado Federal : " << eleitor[i].VotoDepFed << endl;
 		cout << "Deputado Distrital : " << eleitor[i].VotoDepDist << endl;
-		cout << "Senador : " << eleitor[i].VotoSen << endl;
+		cout << "Senador : " << eleitor[i].VotoSen <<  " Primeiro Suplente : " << eleitor[i].Voto1sup << " Segundo Suplente : " << eleitor[i].Voto2sup << endl;
 
 
 		cout << "__________________________________" << endl;
 		cout << endl;
 		cout << endl;
-
-
-
 
 	}
 
