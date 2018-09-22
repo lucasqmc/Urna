@@ -280,8 +280,9 @@ int aux = 0 ;
 
 					cout << "-------------------------------------" << endl;
 
-					//Passando indice para o objeto candidato.
-					
+					//Passando indice do candidato no vetor  para atributo indCandidato_em_analise do objeto Candidato...
+					//Dessa maneira poderei armazenar o indice do candidato a ser votado em uma variavel independente.
+
 					candidato[0].indCandidato_em_analise = i;
 
 
@@ -392,15 +393,21 @@ int aux = 0 ;
 
 
 void LogicaUrna::GerarRelatorio(){
+	
 int i;
 
 	for(i=0;i<eleitor[0].numero_de_eleitores ;i++){
 
 		
+		cout << "Nome do eleitor:" << endl;
+		cout << eleitor[i].nome_eleitor << endl;
 
-		cout << eleitor[i].nome_eleitor << ":" << eleitor[i].VotoDepFed << endl; 
-		
-		cout << eleitor[i].VotoDepDist << endl;
+		cout << "Relatório de votos:" << endl;
+
+		cout << "----------------------------" << endl;
+
+		cout << "Deputado Federal:" << eleitor[i].VotoDepFed << endl;
+		cout << "Deputado Distrital:" << eleitor[i].VotoDepDist << endl;
 
 
 
