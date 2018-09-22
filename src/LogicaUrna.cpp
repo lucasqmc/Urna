@@ -24,8 +24,6 @@ Eleitor eleitor[1000];
 ///////////////----------INICIO DAS FUNÇÕES---------///////////////////////
 
 
-
-
 //_____Função de leitura dos dados dos candidatos do DF:
 
 void LogicaUrna::Leitura1(){
@@ -48,8 +46,6 @@ void LogicaUrna::Leitura1(){
 
 
 		}
-
-
 
                //Leitura dos dados do arquivo por meio da função getline(),Feito com dois for's para evitar erro de seguimentação.
 
@@ -77,9 +73,6 @@ void LogicaUrna::Leitura1(){
 				getline(cp,candidato[i].nome_candidato,',');
 				getline(cp,candidato[i].numero_partido,',');
 				getline(cp,candidato[i].nome_partido,',');
-
-
-
 
 
 		}
@@ -161,7 +154,7 @@ return eleitor[0].numero_de_eleitores;
 
 }
 
-//_____Função menu toda vez que o voto é realizado:
+//_____Função MENU toda vez que o voto é realizado:       --****_*_*_*_*_*_*_*_*_*_*__*_*_*_*_*_*___*_**__--****_*_*_*_*_*_*_*_*_*_*__*_*_*_*_*_*___*_**__--****_*_
 
 void LogicaUrna::MenuPosVoto(){
 	char cmd;
@@ -185,6 +178,9 @@ void LogicaUrna::MenuPosVoto(){
 						cout << "VOTO CONFIRMADO !" << endl;
 
 						cout << "-------------------------------------" << endl;
+						cout  << endl;
+						cout  << endl;
+
 
 					//Contabilizando voto do candidato:
 
@@ -197,7 +193,6 @@ void LogicaUrna::MenuPosVoto(){
 
 						//Se for deputado federal:
 
-
 						if(candidato[candidato[0].indCandidato_em_analise].cargo == "DEPUTADO FEDERAL" ){
 
 							eleitor[eleitor[0].contaeleitor-1].VotoDepFed = candidato[candidato[0].indCandidato_em_analise].nome_candidato ;
@@ -208,6 +203,16 @@ void LogicaUrna::MenuPosVoto(){
 						else if(candidato[candidato[0].indCandidato_em_analise].cargo == "DEPUTADO DISTRITAL" ){
 
 							eleitor[eleitor[0].contaeleitor-1].VotoDepDist = candidato[candidato[0].indCandidato_em_analise].nome_candidato ;
+						}
+
+						//Se for senador:
+
+						else if(candidato[candidato[0].indCandidato_em_analise].cargo == "SENADOR" ){
+
+							eleitor[eleitor[0].contaeleitor-1].VotoSen = candidato[candidato[0].indCandidato_em_analise].nome_candidato ;
+
+
+
 						}
 
 
@@ -569,6 +574,8 @@ int i;
 
 		cout << "Deputado Federal : " << eleitor[i].VotoDepFed << endl;
 		cout << "Deputado Distrital : " << eleitor[i].VotoDepDist << endl;
+		cout << "Senador : " << eleitor[i].VotoSen << endl;
+
 
 		cout << "__________________________________" << endl;
 		cout << endl;
