@@ -447,9 +447,11 @@ int aux = 0 ;
 
 		for(i=0;i<=1237;i++){
 
-			if(candidato[i].numero == codigo_cand_sen){
+			if(candidato[i].numero == codigo_cand_sen && candidato[i].cargo == "SENADOR"){
 
 				aux = 1;
+
+
 
 					cout<<"Nome: "<< candidato[i].nome_candidato << endl;
 					cout<<"Regiao: "<< candidato[i].regiao << endl;
@@ -474,6 +476,57 @@ int aux = 0 ;
 					
 
 			}
+
+
+
+	
+		}
+
+		for(i=0;i<=1237;i++){
+
+			if(candidato[i].numero == codigo_cand_sen && candidato[i].cargo == "1º SUPLENTE"){
+
+				aux = 1;
+
+
+
+					cout<<"Nome: "<< candidato[i].nome_candidato << endl;
+					cout<<"Regiao: "<< candidato[i].regiao << endl;
+					cout<<"Cargo: "<< candidato[i].cargo << endl;
+					cout<<"Partido: "<< candidato[i].nome_partido << endl;
+					cout<<"Numero do partido: "<< candidato[i].numero_partido << endl;
+
+					cout<<"-------------------------------------"<<endl;
+
+					
+					
+			}
+
+
+	
+		}
+
+				for(i=0;i<=1237;i++){
+
+			if(candidato[i].numero == codigo_cand_sen && candidato[i].cargo == "2º SUPLENTE"){
+
+				aux = 1;
+
+
+
+					cout<<"Nome: "<< candidato[i].nome_candidato << endl;
+					cout<<"Regiao: "<< candidato[i].regiao << endl;
+					cout<<"Cargo: "<< candidato[i].cargo << endl;
+					cout<<"Partido: "<< candidato[i].nome_partido << endl;
+					cout<<"Numero do partido: "<< candidato[i].numero_partido << endl;
+
+					cout<<"-------------------------------------"<<endl;
+
+					
+					
+			}
+
+
 	
 		}
 
