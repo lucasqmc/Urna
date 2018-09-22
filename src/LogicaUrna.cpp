@@ -145,7 +145,7 @@ void LogicaUrna::PegaNomeEleitor(){
 
 
 
-	eleitor[0].contaeleitor++; // Essa variavel da classe eleitor é usada somente para contar em qual indice referente ao vetor dos  candidatos eu estou.
+	eleitor[0].contaeleitor++; //--> Essa variavel da classe eleitor é usada somente para contar em qual indice referente ao vetor dos  candidatos eu estou.
 
 }
 
@@ -184,6 +184,8 @@ void LogicaUrna::MenuPosVoto(){
 
 						cout << "VOTO CONFIRMADO !" << endl;
 
+						cout << "-------------------------------------" << endl;
+
 					//Contabilizando voto do candidato:
 
 						/////////INDICE(POSIÇÃO) DO CANDIDATO NO VETOR///////////////////
@@ -192,7 +194,22 @@ void LogicaUrna::MenuPosVoto(){
 
 						
 					//Atribuindo nome do candidato votado ao eleitor da vez(relacionando eleitor e candidato) :
-						eleitor[eleitor[0].contaeleitor-1].VotoDepFed = candidato[candidato[0].indCandidato_em_analise].nome_candidato ;
+
+						//Se for deputado federal:
+
+
+						if(candidato[candidato[0].indCandidato_em_analise].cargo == "DEPUTADO FEDERAL" ){
+
+							eleitor[eleitor[0].contaeleitor-1].VotoDepFed = candidato[candidato[0].indCandidato_em_analise].nome_candidato ;
+						}
+
+						//Se for deputado distrital:
+
+						else if(candidato[candidato[0].indCandidato_em_analise].cargo == "DEPUTADO DISTRITAL" ){
+
+							eleitor[eleitor[0].contaeleitor-1].VotoDepDist = candidato[candidato[0].indCandidato_em_analise].nome_candidato ;
+						}
+
 
 					}
 
@@ -200,8 +217,8 @@ void LogicaUrna::MenuPosVoto(){
 
 					// BOTÃO CANCELA:
 
-						cout << "PASSO CANCELADO" << endl;
-						
+						cout << "PASSO CANCELADO !" << endl;
+
 						//Chamo novamente a função para voto :
 
 						VotarDeputadoFed();
@@ -291,7 +308,7 @@ int aux = 0 ;
 
 }
 
-//_____Função para votar em deputado distrital :
+//_____Função para votar em Deputado Distrital :
 
 void LogicaUrna::VotarDeputadoDist(){
 
@@ -381,7 +398,9 @@ int i;
 
 		
 
-		cout << eleitor[i].nome_eleitor << ":" << eleitor[i].VotoDepFed << endl;
+		cout << eleitor[i].nome_eleitor << ":" << eleitor[i].VotoDepFed << endl; 
+		
+		cout << eleitor[i].VotoDepDist << endl;
 
 
 
