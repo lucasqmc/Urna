@@ -22,6 +22,7 @@ class LogicaUrna {
         void VotarDeputadoFed();
         void VotarDeputadoDist();
         void GerarRelatorio();
+        void VotarSen();
         int RetornaNumeroEleitores();
 
 

@@ -219,9 +219,33 @@ void LogicaUrna::MenuPosVoto(){
 
 						cout << "PASSO CANCELADO !" << endl;
 
-						//Chamo novamente a função para voto :
 
-						VotarDeputadoFed();
+							if(candidato[candidato[0].indCandidato_em_analise].cargo == "DEPUTADO FEDERAL" ){
+
+
+								VotarDeputadoFed();
+							}
+
+							//Se for deputado distrital:
+
+							else if(candidato[candidato[0].indCandidato_em_analise].cargo == "DEPUTADO DISTRITAL" ){
+
+								VotarDeputadoDist();
+
+							
+							}
+
+
+							else if(candidato[candidato[0].indCandidato_em_analise].cargo == "SENADOR" || candidato[candidato[0].indCandidato_em_analise].cargo == "1º SUPLENTE"  || candidato[candidato[0].indCandidato_em_analise].cargo == "2º SUPLENTE" ){
+
+								VotarSen();
+
+							
+							}
+
+							//Chamo novamente a função para voto :
+
+							
 
 					}				
 
@@ -286,7 +310,7 @@ int aux = 0 ;
 					candidato[0].indCandidato_em_analise = i;
 
 
-					MenuPosVoto();
+					
 
 					
 
@@ -298,6 +322,7 @@ int aux = 0 ;
 			}
 	
 		}
+		MenuPosVoto();
 
 		if(aux == 0){
 
@@ -361,7 +386,7 @@ int aux = 0 ;
 					candidato[0].indCandidato_em_analise = i;
 
 
-					MenuPosVoto();
+					
 
 					
 
@@ -373,6 +398,86 @@ int aux = 0 ;
 			}
 	
 		}
+
+		MenuPosVoto();
+
+		if(aux == 0){
+
+			cout << "Candidato não encontrado! tente novamente." << endl;
+
+		}
+
+	}while(aux == 0);
+
+}
+
+
+
+
+void LogicaUrna::VotarSen(){
+
+
+
+int aux = 0 ;
+
+
+	string codigo_cand_sen;
+	int i;
+
+
+	do{
+		cout<<"Vote para Senador :"<<endl;
+
+
+		do{
+
+			LimpaBuffer();
+	
+
+
+			cin >> codigo_cand_sen;
+
+			if(codigo_cand_sen.size()!=3){
+
+				cout << "Insira 3 digitos !"<<endl;
+			}
+
+		}while(codigo_cand_sen.size()!=3);
+
+
+		for(i=0;i<=1237;i++){
+
+			if(candidato[i].numero == codigo_cand_sen){
+
+				aux = 1;
+
+					cout<<"Nome: "<< candidato[i].nome_candidato << endl;
+					cout<<"Regiao: "<< candidato[i].regiao << endl;
+					cout<<"Cargo: "<< candidato[i].cargo << endl;
+					cout<<"Partido: "<< candidato[i].nome_partido << endl;
+					cout<<"Numero do partido: "<< candidato[i].numero_partido << endl;
+
+					cout<<"-------------------------------------"<<endl;
+
+					//Passando indice para o objeto candidato.
+					
+					candidato[0].indCandidato_em_analise = i;
+
+
+					
+
+					
+
+					
+
+				
+					
+
+			}
+	
+		}
+
+		MenuPosVoto();
 
 		if(aux == 0){
 
@@ -393,21 +498,29 @@ int aux = 0 ;
 
 
 void LogicaUrna::GerarRelatorio(){
-	
+
 int i;
 
 	for(i=0;i<eleitor[0].numero_de_eleitores ;i++){
 
 		
-		cout << "Nome do eleitor:" << endl;
-		cout << eleitor[i].nome_eleitor << endl;
-
+		cout << "NOME DO ELEITOR :    " << eleitor[i].nome_eleitor << endl;
+		cout << endl;
+		cout << endl;
+		cout << endl;
+	
 		cout << "Relatório de votos:" << endl;
 
-		cout << "----------------------------" << endl;
+		cout << "__________________________________" << endl;
+		cout << endl;
 
-		cout << "Deputado Federal:" << eleitor[i].VotoDepFed << endl;
-		cout << "Deputado Distrital:" << eleitor[i].VotoDepDist << endl;
+		cout << "Deputado Federal : " << eleitor[i].VotoDepFed << endl;
+		cout << "Deputado Distrital : " << eleitor[i].VotoDepDist << endl;
+
+		cout << "__________________________________" << endl;
+		cout << endl;
+		cout << endl;
+
 
 
 
