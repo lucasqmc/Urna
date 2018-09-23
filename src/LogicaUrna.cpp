@@ -167,8 +167,6 @@ void LogicaUrna::MenuPosVoto(){
 
 				cmd = getchar();
 
-				
-
 						
 
 					if(cmd == '1'){
@@ -332,9 +330,13 @@ int aux = 0 ;
 			}
 	
 		}
-		MenuPosVoto();
+		
+		if(aux == 1){
 
-		if(aux == 0){
+			MenuPosVoto();
+		}
+
+		else if(aux == 0){
 
 			cout << "Candidato não encontrado! tente novamente." << endl;
 
@@ -409,9 +411,13 @@ int aux = 0 ;
 	
 		}
 
-		MenuPosVoto();
+		
+		if(aux == 1){
 
-		if(aux == 0){
+			MenuPosVoto();
+		}
+
+		else if(aux == 0){
 
 			cout << "Candidato não encontrado! tente novamente." << endl;
 
@@ -476,15 +482,6 @@ int aux = 0 ;
 					candidato[0].indCandidato_em_analise = i;
 
 
-					
-
-					
-
-					
-
-				
-					
-
 			}
 
 
@@ -521,9 +518,9 @@ int aux = 0 ;
 
 				for(i=0;i<=1237;i++){
 
-			if(candidato[i].numero == codigo_cand_sen && candidato[i].cargo == "2º SUPLENTE"){
+					if(candidato[i].numero == codigo_cand_sen && candidato[i].cargo == "2º SUPLENTE"){
 
-				aux = 1;
+					aux = 1;
 
 
 
@@ -544,9 +541,13 @@ int aux = 0 ;
 
 		}
 
-		MenuPosVoto();
 
-		if(aux == 0){
+		if(aux == 1){
+
+			MenuPosVoto();
+		}
+
+		else if(aux == 0){
 
 			cout << "Candidato não encontrado! tente novamente." << endl;
 
@@ -585,6 +586,34 @@ int i;
 		cout << endl;
 
 	}
+
+
+}
+
+void LogicaUrna::IndentificaGanhador(){
+
+int i;
+
+int maior = 0;
+string DepFedGanhador;
+
+	for(i=0;i<=1237;i++){
+
+			if(candidato[i].cargo == "DEPUTADO FEDERAL" ){
+
+					if(candidato[i].numero_de_votos > maior ){
+
+						maior = candidato[i].numero_de_votos;
+						DepFedGanhador = candidato[i].nome_candidato;
+
+
+					}
+
+			}
+
+	}
+
+cout << "Deputado Federal Vencedor : " << DepFedGanhador << endl;		
 
 
 }

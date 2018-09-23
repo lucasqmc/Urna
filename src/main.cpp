@@ -51,6 +51,8 @@ logica.UrnaConfig();
 //Geração do relatório :
 
 logica.GerarRelatorio();
+
+logica.IndentificaGanhador();
 	
 	
     return 0;
