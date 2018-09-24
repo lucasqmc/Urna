@@ -21,6 +21,7 @@ class Eleitor {
         string Voto1sup;
         string Voto2sup;
         string VotoGov;
+        string VotoViceGov;
         string VotoPres;
 
         int numero_de_eleitores;  

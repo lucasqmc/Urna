@@ -16,13 +16,16 @@ class LogicaUrna {
 
         void Leitura1();
         void LimpaBuffer();
+        
         void UrnaConfig();
         void PegaNomeEleitor();
         void MenuPosVoto();
         void VotarDeputadoFed();
         void VotarDeputadoDist();
-        void GerarRelatorio();
         void VotarSen();
+        void VotarGov();
+
+        void GerarRelatorio();
         void IndentificaGanhador();
         int RetornaNumeroEleitores();
 

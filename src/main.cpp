@@ -42,6 +42,7 @@ logica.UrnaConfig();
 	logica.VotarDeputadoFed();
 	logica.VotarDeputadoDist();
 	logica.VotarSen();
+	logica.VotarGov();
 
 
 

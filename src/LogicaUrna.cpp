@@ -125,7 +125,7 @@ void LogicaUrna::UrnaConfig(){
 
 void LogicaUrna::PegaNomeEleitor(){
 
-
+system("clear");
 	
 
 	cout << "Nome do eleitor:"<<endl;
@@ -218,7 +218,20 @@ void LogicaUrna::MenuPosVoto(){
 
 						}
 
+						else if(candidato[candidato[0].indCandidato_em_analise].cargo == "GOVERNADOR" ){
 
+
+							// Atribuindo nome dos candidatos votados  a variaveis da classe eleitor,para facilitar relatorio :
+
+							eleitor[eleitor[0].contaeleitor-1].VotoGov = candidato[candidato[0].indCandidato_em_analise].nome_candidato ;
+							eleitor[eleitor[0].contaeleitor-1].VotoViceGov = candidato[candidato[1].indCandidato_em_analise].nome_candidato ;
+							
+
+
+
+						}
+
+							system("clear");
 					}
 
 					else if(cmd == '2'){
@@ -251,7 +264,15 @@ void LogicaUrna::MenuPosVoto(){
 							
 							}
 
-							//Chamo novamente a função para voto :
+
+							else if(candidato[candidato[0].indCandidato_em_analise].cargo == "GOVERNADOR" || candidato[candidato[0].indCandidato_em_analise].cargo == "VICE-GOVERNADOR" ){
+
+								VotarGov();
+
+							
+							}
+
+							
 
 							
 
@@ -300,7 +321,7 @@ int aux = 0 ;
 
 			if(candidato[i].numero == codigo_cand_depfed){
 
-				aux = 1;
+				aux = 1; // Variavel auxiliar ultilizada para detectar se foi achado o candidato .
 
 					cout << "-------------------------------------" << endl;
 
@@ -315,16 +336,7 @@ int aux = 0 ;
 					//Passando indice do candidato no vetor  para atributo indCandidato_em_analise do objeto Candidato...
 					//Dessa maneira poderei armazenar o indice do candidato a ser votado em uma variavel independente.
 
-					candidato[0].indCandidato_em_analise = i;
-
-
-					
-
-					
-
-					
-
-				
+					candidato[0].indCandidato_em_analise = i;	
 					
 
 			}
@@ -383,7 +395,7 @@ int aux = 0 ;
 
 			if(candidato[i].numero == codigo_cand_depdist){
 
-				aux = 1;
+				aux = 1; // Variavel auxiliar ultilizada para detectar se foi achado o candidato .
 
 					cout<<"Nome: "<< candidato[i].nome_candidato << endl;
 					cout<<"Regiao: "<< candidato[i].regiao << endl;
@@ -396,15 +408,7 @@ int aux = 0 ;
 					//Passando indice para o objeto candidato.
 					
 					candidato[0].indCandidato_em_analise = i;
-
-
-					
-
-					
-
-					
-
-				
+		
 					
 
 			}
@@ -465,7 +469,7 @@ int aux = 0 ;
 
 			if(candidato[i].numero == codigo_cand_sen && candidato[i].cargo == "SENADOR"){
 
-				aux = 1;
+				aux = 1; // Variavel auxiliar ultilizada para detectar se foi achado o candidato .
 
 
 
@@ -520,7 +524,7 @@ int aux = 0 ;
 
 					if(candidato[i].numero == codigo_cand_sen && candidato[i].cargo == "2º SUPLENTE"){
 
-					aux = 1;
+					aux = 1; 
 
 
 
@@ -540,6 +544,110 @@ int aux = 0 ;
 
 
 		}
+
+
+		if(aux == 1){
+
+			MenuPosVoto();
+		}
+
+		else if(aux == 0){
+
+			cout << "Candidato não encontrado! tente novamente." << endl;
+
+		}
+
+	}while(aux == 0);
+
+}
+
+void LogicaUrna::VotarGov(){
+
+
+
+int aux = 0 ;
+
+
+	string codigo_cand_gov;
+	int i;
+
+
+	do{
+		cout << "Vote para Governador :"<< endl;
+
+
+		do{
+
+			LimpaBuffer();
+	
+
+
+			cin >> codigo_cand_gov;
+
+			if(codigo_cand_gov.size()!=2){
+
+				cout << "Insira 2 digitos !"<< endl;
+			}
+
+		}while(codigo_cand_gov.size()!=2);
+
+
+		for(i=0;i<=1237;i++){
+
+			if(candidato[i].numero == codigo_cand_gov && candidato[i].cargo == "GOVERNADOR"){
+
+				aux = 1;
+
+
+
+					cout<<"Nome: "<< candidato[i].nome_candidato << endl;
+					cout<<"Regiao: "<< candidato[i].regiao << endl;
+					cout<<"Cargo: "<< candidato[i].cargo << endl;
+					cout<<"Partido: "<< candidato[i].nome_partido << endl;
+					cout<<"Numero do partido: "<< candidato[i].numero_partido << endl;
+
+					cout<<"-------------------------------------"<<endl;
+
+					//Passando indice para o objeto candidato.
+					
+					candidato[0].indCandidato_em_analise = i;
+
+
+			}
+
+
+
+	
+		}
+
+		for(i=0;i<=1237;i++){
+
+			if(candidato[i].numero == codigo_cand_gov && candidato[i].cargo == "VICE-GOVERNADOR"){
+
+				aux = 1;
+
+
+
+					cout<<"Nome: "<< candidato[i].nome_candidato << endl;
+					cout<<"Regiao: "<< candidato[i].regiao << endl;
+					cout<<"Cargo: "<< candidato[i].cargo << endl;
+					cout<<"Partido: "<< candidato[i].nome_partido << endl;
+					cout<<"Numero do partido: "<< candidato[i].numero_partido << endl;
+
+					cout<<"-------------------------------------"<<endl;
+
+
+					candidato[1].indCandidato_em_analise = i;
+
+					
+					
+			}
+
+
+	
+		}
+
+
 
 
 		if(aux == 1){
@@ -579,6 +687,7 @@ int i;
 		cout << "Deputado Federal : " << eleitor[i].VotoDepFed << endl;
 		cout << "Deputado Distrital : " << eleitor[i].VotoDepDist << endl;
 		cout << "Senador : " << eleitor[i].VotoSen <<  " Primeiro Suplente : " << eleitor[i].Voto1sup << " Segundo Suplente : " << eleitor[i].Voto2sup << endl;
+		cout << "Governador : " << eleitor[i].VotoGov <<  " Vice : " << eleitor[i].VotoViceGov << endl;
 
 
 		cout << "__________________________________" << endl;
