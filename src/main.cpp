@@ -25,8 +25,12 @@ int i ;
 
 LogicaUrna logica;
 
+
+
+
 //Leitura dos dados do arquivo de candidatos-DF
 logica.Leitura1();
+logica.Leitura2();
 
 //Configurações acerca da Urna :	
 
@@ -43,6 +47,7 @@ logica.UrnaConfig();
 	logica.VotarDeputadoDist();
 	logica.VotarSen();
 	logica.VotarGov();
+	logica.VotarPres();
 
 
 

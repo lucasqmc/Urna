@@ -14,15 +14,26 @@ class Eleitor {
         int get_numeroEleitores();
         void set_nomeEleitor(string nome);
 
+
+
         string nome_eleitor;
+
+
         string VotoDepFed;
         string VotoDepDist;
         string VotoSen;
+        string VotoSen2;
         string Voto1sup;
         string Voto2sup;
+        string Voto3sup;
+        string Voto4sup;
         string VotoGov;
         string VotoViceGov;
         string VotoPres;
+        string VotoVicePres;
+
+
+
 
         int numero_de_eleitores;  
         int contaeleitor;   

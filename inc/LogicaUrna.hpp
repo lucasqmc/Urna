@@ -15,6 +15,7 @@ class LogicaUrna {
         ~LogicaUrna();
 
         void Leitura1();
+        void Leitura2();
         void LimpaBuffer();
         
         void UrnaConfig();
@@ -23,7 +24,10 @@ class LogicaUrna {
         void VotarDeputadoFed();
         void VotarDeputadoDist();
         void VotarSen();
+        void VotarSen2();
         void VotarGov();
+        void VotarPres();
+        void PrintaDados();
 
         void GerarRelatorio();
         void IndentificaGanhador();

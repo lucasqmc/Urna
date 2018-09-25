@@ -19,6 +19,11 @@ Candidato::Candidato(){
 
 	numero_de_votos = 0;
 
+	apelido_candidato = "NENHUM";
+
+	sigla_partido = "NENHUM";
+
+
 
 
 

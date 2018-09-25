@@ -16,7 +16,7 @@ LogicaUrna::~LogicaUrna(){}
 
 ///--- _*** ----  ///        Criação dos obejetos principais :           /// --- _*** ---- ///
 
-Candidato candidato[1238];
+Candidato candidato[1265];
 Eleitor eleitor[1000];
 
 
@@ -86,6 +86,57 @@ void LogicaUrna::Leitura1(){
 
 }
 
+void LogicaUrna::Leitura2(){
+
+	system("clear");
+
+	int i;
+
+	       // ABERTURA DO ARQUIVO DOS CANDIDATOS(APENAS DF):
+	
+
+	ifstream cbr("./data/candidatos_BR.csv");
+
+
+	        // ERRO CASO A ABERTURA FALHE :
+
+		if(!cbr.is_open()){
+
+			cout << "ERRO: NAO ABRIU" << endl ;
+
+
+		}
+
+               //Leitura dos dados do arquivo por meio da função getline(),Feito com dois for's para evitar erro de seguimentação.
+
+
+		for(i=1237;i<=1265;i++){
+
+				getline(cbr,candidato[i].regiao,',');
+				getline(cbr,candidato[i].cargo,',');
+				getline(cbr,candidato[i].numero,',');
+				getline(cbr,candidato[i].nome_candidato,',');
+				getline(cbr,candidato[i].apelido_candidato,',');
+				getline(cbr,candidato[i].numero_partido,',');
+				getline(cbr,candidato[i].nome_partido,',');
+				getline(cbr,candidato[i].sigla_partido,'\n');
+
+
+
+
+
+
+		}	
+
+	
+
+	//Fechando arquivos dos candidatos do DF...
+
+	cbr.close();
+
+
+}
+
 
 //_____Função para limpar buffer:
 
@@ -107,8 +158,6 @@ void LogicaUrna::LimpaBuffer(){
 }
 
 
-
-
 //_____Função para configurar numero de eleitores da urna:
 
 void LogicaUrna::UrnaConfig(){
@@ -125,6 +174,8 @@ void LogicaUrna::UrnaConfig(){
 
 void LogicaUrna::PegaNomeEleitor(){
 
+// Limpando tela :	
+
 system("clear");
 	
 
@@ -138,15 +189,13 @@ system("clear");
 
 
 
-	eleitor[0].contaeleitor++; //--> Essa variavel da classe eleitor é usada somente para contar em qual indice referente ao vetor dos  candidatos eu estou.
+	eleitor[0].contaeleitor++; //--> Essa variavel da classe eleitor é usada somente para contar em qual indice referente ao vetor dos  eleitores eu estou.
 
 }
 
 //_____Função que retorna numero de eleitores:
 
 int LogicaUrna::RetornaNumeroEleitores(){
-
-
 
 
 return eleitor[0].numero_de_eleitores;
@@ -231,7 +280,21 @@ void LogicaUrna::MenuPosVoto(){
 
 						}
 
-							system("clear");
+
+						else if(candidato[candidato[0].indCandidato_em_analise].cargo == "PRESIDENTE" ){
+
+
+							// Atribuindo nome dos candidatos votados  a variaveis da classe eleitor,para facilitar relatorio :
+
+							eleitor[eleitor[0].contaeleitor-1].VotoPres = candidato[candidato[0].indCandidato_em_analise].nome_candidato ;
+							eleitor[eleitor[0].contaeleitor-1].VotoVicePres = candidato[candidato[1].indCandidato_em_analise].nome_candidato ;
+							
+
+
+
+						}
+
+						system("clear");
 					}
 
 					else if(cmd == '2'){
@@ -272,15 +335,22 @@ void LogicaUrna::MenuPosVoto(){
 							
 							}
 
-							
+
+							else if(candidato[candidato[0].indCandidato_em_analise].cargo == "PRESIDENTE" || candidato[candidato[0].indCandidato_em_analise].cargo == "VICE-GOVERNADOR" ){
+
+								VotarPres();
 
 							
+							}
 
 					}				
 
 
-
 }
+
+
+
+
 
 
 
@@ -362,9 +432,8 @@ int aux = 0 ;
 
 void LogicaUrna::VotarDeputadoDist(){
 
-//Lendo codigo do candidato:
 
-int aux = 0 ;
+int aux = 0 ; // Variavel para auxiliar quando foi achado candidato,facilitando uso do "do while" 
 
 
 	string codigo_cand_depdist;
@@ -375,11 +444,11 @@ int aux = 0 ;
 		cout<<"Vote para Deputado Distrital :"<<endl;
 
 
-		do{
+		do{                        // Laço usado para fazer a validação do codigo digitado :
 
 			LimpaBuffer();
 	
-
+			//Lendo codigo do candidato:
 
 			cin >> codigo_cand_depdist;
 
@@ -396,6 +465,8 @@ int aux = 0 ;
 			if(candidato[i].numero == codigo_cand_depdist){
 
 				aux = 1; // Variavel auxiliar ultilizada para detectar se foi achado o candidato .
+
+				//Printo as informações do candidato na tela :
 
 					cout<<"Nome: "<< candidato[i].nome_candidato << endl;
 					cout<<"Regiao: "<< candidato[i].regiao << endl;
@@ -418,10 +489,14 @@ int aux = 0 ;
 		
 		if(aux == 1){
 
+			// Se foi achado o candidato é chamada a função MenuPosVoto() :
+
 			MenuPosVoto();
 		}
 
 		else if(aux == 0){
+
+			// Se nao foi achado candidato a variavel aux continua como zero e o laço while se repete. 
 
 			cout << "Candidato não encontrado! tente novamente." << endl;
 
@@ -435,8 +510,6 @@ int aux = 0 ;
 
 
 void LogicaUrna::VotarSen(){
-
-
 
 int aux = 0 ;
 
@@ -615,14 +688,113 @@ int aux = 0 ;
 
 			}
 
-
-
-	
 		}
 
 		for(i=0;i<=1237;i++){
 
 			if(candidato[i].numero == codigo_cand_gov && candidato[i].cargo == "VICE-GOVERNADOR"){
+
+				aux = 1;
+
+
+
+					cout<<"Nome: "<< candidato[i].nome_candidato << endl;
+					cout<<"Regiao: "<< candidato[i].regiao << endl;
+					cout<<"Cargo: "<< candidato[i].cargo << endl;
+					cout<<"Partido: "<< candidato[i].nome_partido << endl;
+					cout<<"Numero do partido: "<< candidato[i].numero_partido << endl;
+
+					cout<<"-------------------------------------"<<endl;
+
+
+					candidato[1].indCandidato_em_analise = i;
+
+					
+					
+			}
+
+
+	
+		}
+
+
+
+
+		if(aux == 1){
+
+			MenuPosVoto();
+		}
+
+		else if(aux == 0){
+
+			cout << "Candidato não encontrado! tente novamente." << endl;
+
+		}
+
+	}while(aux == 0);
+
+}
+
+void LogicaUrna::VotarPres(){
+
+
+
+int aux = 0 ;
+
+
+	string codigo_cand_pres;
+	int i;
+
+
+	do{
+		cout << "Vote para Presidente :"<< endl;
+
+
+		do{
+
+			LimpaBuffer();
+	
+
+
+			cin >> codigo_cand_pres;
+
+			if(codigo_cand_pres.size()!=2){
+
+				cout << "Insira 2 digitos !"<< endl;
+			}
+
+		}while(codigo_cand_pres.size()!=2);
+
+
+		for(i=1237;i<=1265;i++){
+
+			if(candidato[i].numero == codigo_cand_pres && candidato[i].cargo == "PRESIDENTE"){
+
+				aux = 1;
+
+
+
+					cout << "Nome: "<< candidato[i].nome_candidato << endl;
+					cout << "Apelido: "<< candidato[i].apelido_candidato << endl;
+					cout << "Regiao: "<< candidato[i].regiao << endl;
+					cout << "Cargo: "<< candidato[i].cargo << endl;
+					cout << "Partido: "<< candidato[i].nome_partido << endl;
+					cout << "Numero do partido: "<< candidato[i].numero_partido << endl;
+
+					cout<<"-------------------------------------"<<endl;
+
+					//Passando indice para o objeto candidato.
+					
+					candidato[0].indCandidato_em_analise = i;
+
+
+			}
+
+		}
+
+		for(i=1237;i<=1265;i++){
+
+			if(candidato[i].numero == codigo_cand_pres && candidato[i].cargo == "VICE-PRESIDENTE"){
 
 				aux = 1;
 
@@ -688,6 +860,7 @@ int i;
 		cout << "Deputado Distrital : " << eleitor[i].VotoDepDist << endl;
 		cout << "Senador : " << eleitor[i].VotoSen <<  " Primeiro Suplente : " << eleitor[i].Voto1sup << " Segundo Suplente : " << eleitor[i].Voto2sup << endl;
 		cout << "Governador : " << eleitor[i].VotoGov <<  " Vice : " << eleitor[i].VotoViceGov << endl;
+		cout << "Presidente : " << eleitor[i].VotoPres <<  " Vice : " << eleitor[i].VotoVicePres << endl;
 
 
 		cout << "__________________________________" << endl;
@@ -723,6 +896,22 @@ string DepFedGanhador;
 	}
 
 cout << "Deputado Federal Vencedor : " << DepFedGanhador << endl;		
+
+
+}
+
+
+void LogicaUrna::PrintaDados(){
+
+
+cout <<" codigo do presidente: " << candidato[1237].numero << endl;
+cout <<" codigo do presidente: " << candidato[1238].numero << endl;
+cout <<" codigo do presidente: " << candidato[1239].numero << endl;
+cout <<" codigo do presidente: " << candidato[1240].numero << endl;
+
+
+
+
 
 
 }
