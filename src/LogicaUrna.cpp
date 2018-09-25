@@ -208,7 +208,7 @@ return eleitor[0].numero_de_eleitores;
 void LogicaUrna::MenuPosVoto(){
 	char cmd;
 
-				cout<<"Digite:  1-Confirmar  2-Cancelar passo  3-Votar em branco 4-Cancelar Votação"<<endl;
+				cout<<"Digite:  1-Confirmar  2-Cancelar passo  Enter-Votar em branco 4-Cancelar Votação"<<endl;
 
 
 
@@ -252,9 +252,9 @@ void LogicaUrna::MenuPosVoto(){
 							eleitor[eleitor[0].contaeleitor-1].VotoDepDist = candidato[candidato[0].indCandidato_em_analise].nome_candidato ;
 						}
 
-						//Se for senador:
+						// Se for  1 º senador:
 
-						else if(candidato[candidato[0].indCandidato_em_analise].cargo == "SENADOR" ){
+						else if(candidato[candidato[0].indCandidato_em_analise].cargo == "SENADOR" && candidato[3].indCandidato_em_analise == 1 ){
 
 
 							// Atribuindo nome dos candidatos votados  a variaveis da classe eleitor,para facilitar relatorio :
@@ -262,6 +262,21 @@ void LogicaUrna::MenuPosVoto(){
 							eleitor[eleitor[0].contaeleitor-1].VotoSen = candidato[candidato[0].indCandidato_em_analise].nome_candidato ;
 							eleitor[eleitor[0].contaeleitor-1].Voto1sup = candidato[candidato[1].indCandidato_em_analise].nome_candidato ;
 							eleitor[eleitor[0].contaeleitor-1].Voto2sup = candidato[candidato[2].indCandidato_em_analise].nome_candidato ;
+
+
+
+						}
+
+						// Se for  2 º senador:
+
+						else if(candidato[candidato[0].indCandidato_em_analise].cargo == "SENADOR" && candidato[3].indCandidato_em_analise == 2 ){
+
+
+							// Atribuindo nome dos candidatos votados  a variaveis da classe eleitor,para facilitar relatorio :
+
+							eleitor[eleitor[0].contaeleitor-1].VotoSen2 = candidato[candidato[0].indCandidato_em_analise].nome_candidato ;
+							eleitor[eleitor[0].contaeleitor-1].Voto3sup = candidato[candidato[1].indCandidato_em_analise].nome_candidato ;
+							eleitor[eleitor[0].contaeleitor-1].Voto4sup = candidato[candidato[2].indCandidato_em_analise].nome_candidato ;
 
 
 
@@ -320,9 +335,17 @@ void LogicaUrna::MenuPosVoto(){
 							}
 
 
-							else if(candidato[candidato[0].indCandidato_em_analise].cargo == "SENADOR" || candidato[candidato[0].indCandidato_em_analise].cargo == "1º SUPLENTE"  || candidato[candidato[0].indCandidato_em_analise].cargo == "2º SUPLENTE" ){
+							else if( (candidato[candidato[0].indCandidato_em_analise].cargo == "SENADOR" || candidato[candidato[0].indCandidato_em_analise].cargo == "1º SUPLENTE"  || candidato[candidato[0].indCandidato_em_analise].cargo == "2º SUPLENTE" ) && candidato[3].indCandidato_em_analise == 1 ){
 
 								VotarSen();
+
+							
+							}
+
+
+							else if( (candidato[candidato[0].indCandidato_em_analise].cargo == "SENADOR" || candidato[candidato[0].indCandidato_em_analise].cargo == "1º SUPLENTE"  || candidato[candidato[0].indCandidato_em_analise].cargo == "2º SUPLENTE" ) && candidato[3].indCandidato_em_analise == 2 ){
+
+								VotarSen2();
 
 							
 							}
@@ -558,6 +581,9 @@ int aux = 0 ;
 					
 					candidato[0].indCandidato_em_analise = i;
 
+					// Variavel que define se é primeiro ou segundo senador:
+					candidato[3].indCandidato_em_analise = 1;
+
 
 			}
 
@@ -615,6 +641,129 @@ int aux = 0 ;
 									
 			}
 
+		}
+
+
+		if(aux == 1){
+
+			MenuPosVoto();
+		}
+
+		else if(aux == 0){
+
+			cout << "Candidato não encontrado! tente novamente." << endl;
+
+		}
+
+	}while(aux == 0);
+
+}
+
+void LogicaUrna::VotarSen2(){
+
+int aux = 0 ;
+
+
+	string codigo_cand_sen2;
+	int i;
+
+
+	do{
+		cout<<"Vote para 2º Senador :"<<endl;
+
+
+		do{
+
+			LimpaBuffer();
+	
+			cin >> codigo_cand_sen2;
+
+			if(codigo_cand_sen2.size()!=3){
+
+				cout << "Insira 3 digitos !"<<endl;
+			}
+
+		}while(codigo_cand_sen2.size()!=3);
+
+
+		for(i=0;i<=1237;i++){
+
+			if(candidato[i].numero == codigo_cand_sen2 && candidato[i].cargo == "SENADOR"){
+
+
+				//Achou segundo senador :
+
+				aux = 1; // Variavel auxiliar ultilizada para detectar se foi achado o candidato .
+
+
+
+					cout<<"Nome: "<< candidato[i].nome_candidato << endl;
+					cout<<"Regiao: "<< candidato[i].regiao << endl;
+					cout<<"Cargo: "<< candidato[i].cargo << endl;
+					cout<<"Partido: "<< candidato[i].nome_partido << endl;
+					cout<<"Numero do partido: "<< candidato[i].numero_partido << endl;
+
+					cout<<"-------------------------------------"<<endl;
+
+					//Passando indice para o objeto candidato.
+					
+					candidato[0].indCandidato_em_analise = i;
+
+					// Variavel que define se é primeiro ou segundo senador.
+
+					candidato[3].indCandidato_em_analise = 2;
+
+
+			}
+	
+		}
+
+		for(i=0;i<=1237;i++){
+
+			if(candidato[i].numero == codigo_cand_sen2 && candidato[i].cargo == "1º SUPLENTE"){
+
+				aux = 1;
+
+
+
+					cout<<"Nome: "<< candidato[i].nome_candidato << endl;
+					cout<<"Regiao: "<< candidato[i].regiao << endl;
+					cout<<"Cargo: "<< candidato[i].cargo << endl;
+					cout<<"Partido: "<< candidato[i].nome_partido << endl;
+					cout<<"Numero do partido: "<< candidato[i].numero_partido << endl;
+
+					cout<<"-------------------------------------"<<endl;
+
+
+					candidato[1].indCandidato_em_analise = i;
+
+					
+					
+			}
+		}
+
+				for(i=0;i<=1237;i++){
+
+					if(candidato[i].numero == codigo_cand_sen2 && candidato[i].cargo == "2º SUPLENTE"){
+
+					aux = 1; 
+
+
+
+					cout<<"Nome: "<< candidato[i].nome_candidato << endl;
+					cout<<"Regiao: "<< candidato[i].regiao << endl;
+					cout<<"Cargo: "<< candidato[i].cargo << endl;
+					cout<<"Partido: "<< candidato[i].nome_partido << endl;
+					cout<<"Numero do partido: "<< candidato[i].numero_partido << endl;
+
+					cout<<"-------------------------------------"<<endl;
+
+
+					candidato[2].indCandidato_em_analise = i;
+
+									
+			}
+
 
 		}
 
@@ -634,8 +783,9 @@ int aux = 0 ;
 
 }
 
-void LogicaUrna::VotarGov(){
 
+
+void LogicaUrna::VotarGov(){
 
 
 int aux = 0 ;
@@ -716,8 +866,6 @@ int aux = 0 ;
 
 	
 		}
-
-
 
 
 		if(aux == 1){
@@ -819,9 +967,6 @@ int aux = 0 ;
 	
 		}
 
-
-
-
 		if(aux == 1){
 
 			MenuPosVoto();
@@ -859,6 +1004,7 @@ int i;
 		cout << "Deputado Federal : " << eleitor[i].VotoDepFed << endl;
 		cout << "Deputado Distrital : " << eleitor[i].VotoDepDist << endl;
 		cout << "Senador : " << eleitor[i].VotoSen <<  " Primeiro Suplente : " << eleitor[i].Voto1sup << " Segundo Suplente : " << eleitor[i].Voto2sup << endl;
+		cout << "2º Senador : " << eleitor[i].VotoSen2 <<  " Primeiro Suplente : " << eleitor[i].Voto3sup << " Segundo Suplente : " << eleitor[i].Voto4sup << endl;
 		cout << "Governador : " << eleitor[i].VotoGov <<  " Vice : " << eleitor[i].VotoViceGov << endl;
 		cout << "Presidente : " << eleitor[i].VotoPres <<  " Vice : " << eleitor[i].VotoVicePres << endl;
 
@@ -900,7 +1046,6 @@ cout << "Deputado Federal Vencedor : " << DepFedGanhador << endl;
 
 }
 
-
 void LogicaUrna::PrintaDados(){
 
 
@@ -908,10 +1053,6 @@ cout <<" codigo do presidente: " << candidato[1237].numero << endl;
 cout <<" codigo do presidente: " << candidato[1238].numero << endl;
 cout <<" codigo do presidente: " << candidato[1239].numero << endl;
 cout <<" codigo do presidente: " << candidato[1240].numero << endl;
-
-
-
-
 
 
 }
