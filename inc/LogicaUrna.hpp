@@ -27,7 +27,7 @@ class LogicaUrna {
         void VotarSen2();
         void VotarGov();
         void VotarPres();
-        void PrintaDados();
+        
 
         void GerarRelatorio();
         void IndentificaGanhador();

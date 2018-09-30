@@ -7,7 +7,6 @@
 #include "Eleitor.hpp"
 
 
-
 using namespace std;
 
 LogicaUrna::LogicaUrna(){}
@@ -94,7 +93,6 @@ void LogicaUrna::Leitura2(){
 
 	       // ABERTURA DO ARQUIVO DOS CANDIDATOS(APENAS DF):
 	
-
 	ifstream cbr("./data/candidatos_BR.csv");
 
 
@@ -120,10 +118,6 @@ void LogicaUrna::Leitura2(){
 				getline(cbr,candidato[i].numero_partido,',');
 				getline(cbr,candidato[i].nome_partido,',');
 				getline(cbr,candidato[i].sigla_partido,'\n');
-
-
-
-
 
 
 		}	
@@ -615,8 +609,6 @@ int aux = 0 ;
 					
 			}
 
-
-	
 		}
 
 				for(i=0;i<=1237;i++){
@@ -767,7 +759,6 @@ int aux = 0 ;
 
 		}
 
-
 		if(aux == 1){
 
 			MenuPosVoto();
@@ -782,8 +773,6 @@ int aux = 0 ;
 	}while(aux == 0);
 
 }
-
-
 
 void LogicaUrna::VotarGov(){
 
@@ -821,8 +810,6 @@ int aux = 0 ;
 
 				aux = 1;
 
-
-
 					cout<<"Nome: "<< candidato[i].nome_candidato << endl;
 					cout<<"Regiao: "<< candidato[i].regiao << endl;
 					cout<<"Cargo: "<< candidato[i].cargo << endl;
@@ -835,7 +822,6 @@ int aux = 0 ;
 					
 					candidato[0].indCandidato_em_analise = i;
 
-
 			}
 
 		}
@@ -845,8 +831,6 @@ int aux = 0 ;
 			if(candidato[i].numero == codigo_cand_gov && candidato[i].cargo == "VICE-GOVERNADOR"){
 
 				aux = 1;
-
-
 
 					cout<<"Nome: "<< candidato[i].nome_candidato << endl;
 					cout<<"Regiao: "<< candidato[i].regiao << endl;
@@ -863,8 +847,6 @@ int aux = 0 ;
 					
 			}
 
-
-	
 		}
 
 
@@ -901,8 +883,6 @@ int aux = 0 ;
 		do{
 
 			LimpaBuffer();
-	
-
 
 			cin >> codigo_cand_pres;
 
@@ -963,8 +943,6 @@ int aux = 0 ;
 					
 			}
 
-
-	
 		}
 
 		if(aux == 1){
@@ -982,8 +960,6 @@ int aux = 0 ;
 
 }
 
-
-
 void LogicaUrna::GerarRelatorio(){
 
 int i;
@@ -993,7 +969,7 @@ int i;
 		
 		cout << "NOME DO ELEITOR :    " << eleitor[i].nome_eleitor << endl;
 		cout << endl;
-		cout << endl;
+		cout << endl;	
 		cout << endl;
 	
 		cout << "Relatório de votos:" << endl;
@@ -1046,13 +1022,4 @@ cout << "Deputado Federal Vencedor : " << DepFedGanhador << endl;
 
 }
 
-void LogicaUrna::PrintaDados(){
 
-
-cout <<" codigo do presidente: " << candidato[1237].numero << endl;
-cout <<" codigo do presidente: " << candidato[1238].numero << endl;
-cout <<" codigo do presidente: " << candidato[1239].numero << endl;
-cout <<" codigo do presidente: " << candidato[1240].numero << endl;
-
-
-}
