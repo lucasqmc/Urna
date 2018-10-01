@@ -58,10 +58,6 @@ void LogicaUrna::Leitura1(){
 				getline(cp,candidato[i].numero_partido,',');
 				getline(cp,candidato[i].nome_partido,',');
 
-
-
-
-
 		}	
 
 		for(i=601;i<=1236;i++){
@@ -76,7 +72,6 @@ void LogicaUrna::Leitura1(){
 
 		}
 
-	
 
 	//Fechando arquivos dos candidatos do DF...
 
@@ -107,7 +102,6 @@ void LogicaUrna::Leitura2(){
 
                //Leitura dos dados do arquivo por meio da função getline(),Feito com dois for's para evitar erro de seguimentação.
 
-
 		for(i=1237;i<=1265;i++){
 
 				getline(cbr,candidato[i].regiao,',');
@@ -121,8 +115,6 @@ void LogicaUrna::Leitura2(){
 
 
 		}	
-
-	
 
 	//Fechando arquivos dos candidatos do DF...
 
@@ -145,10 +137,6 @@ void LogicaUrna::LimpaBuffer(){
 		cin.clear();
 		setbuf(stdin, NULL);
 
-
-		//**
-
-
 }
 
 
@@ -162,7 +150,6 @@ void LogicaUrna::UrnaConfig(){
 
 
 }
-
 
 //_____Função para ler nome do eleitor:
 
@@ -180,9 +167,6 @@ system("clear");
 
 	getline(cin,eleitor[eleitor[0].contaeleitor].nome_eleitor);
 
-
-
-
 	eleitor[0].contaeleitor++; //--> Essa variavel da classe eleitor é usada somente para contar em qual indice referente ao vetor dos  eleitores eu estou.
 
 }
@@ -193,7 +177,6 @@ int LogicaUrna::RetornaNumeroEleitores(){
 
 
 return eleitor[0].numero_de_eleitores;
-
 
 }
 
@@ -366,11 +349,6 @@ void LogicaUrna::MenuPosVoto(){
 }
 
 
-
-
-
-
-
 //____Função para votar em Deputado Federal:
 
 void LogicaUrna::VotarDeputadoFed(){
@@ -392,8 +370,6 @@ int aux = 0 ;
 
 			LimpaBuffer();
 	
-
-
 			cin >> codigo_cand_depfed;
 
 			if(codigo_cand_depfed.size()!=4){
@@ -571,6 +547,8 @@ int aux = 0 ;
 
 					cout<<"-------------------------------------"<<endl;
 
+					candidato[i].senador = 1;
+
 					//Passando indice para o objeto candidato.
 					
 					candidato[0].indCandidato_em_analise = i;
@@ -591,8 +569,6 @@ int aux = 0 ;
 			if(candidato[i].numero == codigo_cand_sen && candidato[i].cargo == "1º SUPLENTE"){
 
 				aux = 1;
-
-
 
 					cout<<"Nome: "<< candidato[i].nome_candidato << endl;
 					cout<<"Regiao: "<< candidato[i].regiao << endl;
@@ -617,8 +593,6 @@ int aux = 0 ;
 
 					aux = 1; 
 
-
-
 					cout<<"Nome: "<< candidato[i].nome_candidato << endl;
 					cout<<"Regiao: "<< candidato[i].regiao << endl;
 					cout<<"Cargo: "<< candidato[i].cargo << endl;
@@ -634,7 +608,6 @@ int aux = 0 ;
 			}
 
 		}
-
 
 		if(aux == 1){
 
@@ -696,6 +669,7 @@ int aux = 0 ;
 					cout<<"Numero do partido: "<< candidato[i].numero_partido << endl;
 
 					cout<<"-------------------------------------"<<endl;
+					candidato[i].senador = 2;
 
 					//Passando indice para o objeto candidato.
 					
@@ -755,8 +729,6 @@ int aux = 0 ;
 
 									
 			}
-
-
 		}
 
 		if(aux == 1){
@@ -997,9 +969,14 @@ int i;
 void LogicaUrna::IndentificaGanhador(){
 
 int i;
-
 int maior = 0;
+int cont = 0;
 string DepFedGanhador;
+string DepDistGanhador;
+string Sen1Ganhador;
+string Sen2Ganhador;
+string GovernadorGanhador;
+string PresidenteGanhador;
 
 	for(i=0;i<=1237;i++){
 
@@ -1017,9 +994,264 @@ string DepFedGanhador;
 
 	}
 
-cout << "Deputado Federal Vencedor : " << DepFedGanhador << endl;		
+	for(i=0;i<=1237;i++){
+
+			if(candidato[i].cargo == "DEPUTADO FEDERAL" ){
+
+					if(candidato[i].numero_de_votos == maior ){
+
+						cont++;
+
+
+					}
+
+			}
+
+	}
+
+
+
+	if(cont == 1){
+
+
+	cout << "Deputado Federal Vencedor : " << DepFedGanhador << endl;		
+
+
+	}
+
+	else if(cont > 1){
+
+
+	cout << "Deputado Federal Vencedor :  EMPATE " << endl;		
+
+
+	}
+
+	// SENADOR 1:
+
+	cont = 0 ;
+	maior = 0;
+
+		for(i=0;i<=1237;i++){
+
+			if(candidato[i].cargo == "SENADOR" && candidato[i].senador == 1 ){
+
+					if(candidato[i].numero_de_votos > maior ){
+
+						maior = candidato[i].numero_de_votos;
+						Sen1Ganhador = candidato[i].nome_candidato;
+
+
+					} 
+
+			}
+
+	}
+
+
+
+	for(i=0;i<=1237;i++){
+
+			if(candidato[i].cargo == "SENADOR" && candidato[i].senador == 1 ){
+
+					if(candidato[i].numero_de_votos == maior ){
+
+						cont++;
+
+
+					}
+
+			}
+
+	}
+
+
+	if(cont == 1){
+
+
+	cout << "1º Senador Vencedor : " << Sen1Ganhador << endl;		
+
+
+	}
+
+	else if(cont > 1){
+
+
+	cout << "1º Senador Vencedor :  EMPATE " << endl;		
+
+
+	}
+
+	// SENADOR 2 :
+
+	cont = 0 ;
+	maior = 0;
+
+		for(i=0;i<=1237;i++){
+
+			if(candidato[i].cargo == "SENADOR" && candidato[i].senador == 2 ){
+
+					if(candidato[i].numero_de_votos > maior ){
+
+						maior = candidato[i].numero_de_votos;
+						Sen2Ganhador = candidato[i].nome_candidato;
+
+
+					} 
+
+			}
+
+	}
+
+
+
+	for(i=0;i<=1237;i++){
+
+			if(candidato[i].cargo == "SENADOR" && candidato[i].senador == 2 ){
+
+					if(candidato[i].numero_de_votos == maior ){
+
+						cont++;
+
+
+					}
+
+			}
+
+	}
+
+
+	if(cont == 1){
+
+
+	cout << "2º Senador Vencedor : " << Sen2Ganhador << endl;		
+
+
+	}
+
+	else if(cont > 1){
+
+
+	cout << "2º Senador Vencedor :  EMPATE " << endl;		
+
+
+	}
+
+
+	// GOVERNADOR :
+
+	cont = 0 ;
+	maior = 0;
+
+		for(i=0;i<=1237;i++){
+
+			if(candidato[i].cargo == "GOVERNADOR" ){
+
+					if(candidato[i].numero_de_votos > maior ){
+
+						maior = candidato[i].numero_de_votos;
+						GovernadorGanhador = candidato[i].nome_candidato;
+
+
+					} 
+
+			}
+
+	}
+
+
+
+	for(i=0;i<=1237;i++){
+
+			if(candidato[i].cargo == "GOVERNADOR"){
+
+					if(candidato[i].numero_de_votos == maior ){
+
+						cont++;
+
+
+					}
+
+			}
+
+	}
+
+
+	if(cont == 1){
+
+
+	cout << "Governador Vencedor : " << GovernadorGanhador << endl;		
+
+
+	}
+
+	else if(cont > 1){
+
+
+	cout << "Governador Vencedor :  EMPATE " << endl;		
+
+
+	}
+
+	// PRESIDENTE :
+
+	cont = 0 ;
+	maior = 0;
+
+		for(i=1237;i<=1265;i++){
+
+			if(candidato[i].cargo == "PRESIDENTE" ){
+
+					if(candidato[i].numero_de_votos > maior ){
+
+						maior = candidato[i].numero_de_votos;
+						PresidenteGanhador = candidato[i].nome_candidato;
+
+
+					} 
+
+			}
+
+	}
+
+
+
+	for(i=1237;i<=1265;i++){
+
+			if(candidato[i].cargo == "PRESIDENTE"){
+
+					if(candidato[i].numero_de_votos == maior ){
+
+						cont++;
+
+
+					}
+
+			}
+
+	}
+
+
+	if(cont == 1){
+
+
+	cout << "Presidente Vencedor : " << PresidenteGanhador << endl;		
+
+
+	}
+
+	else if(cont > 1){
+
+
+	cout << "Presidente Vencedor :  EMPATE " << endl;		
+
+
+	}
 
 
 }
+
+
+
 
 

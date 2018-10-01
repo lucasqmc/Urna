@@ -26,8 +26,6 @@ int i ;
 LogicaUrna logica;
 
 
-
-
 //Leitura dos dados do arquivo de candidatos-DF
 logica.Leitura1();
 logica.Leitura2();
