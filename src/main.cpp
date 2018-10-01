@@ -41,12 +41,42 @@ logica.UrnaConfig();
 		// Funções para votação :
 
 	logica.PegaNomeEleitor();
+
 	logica.VotarDeputadoFed();
+
+		if(logica.Cancela() == 1){
+			break;
+		}
+
 	logica.VotarDeputadoDist();
+
+		if(logica.Cancela() == 1){
+			break;
+		}
+
 	logica.VotarSen();
+
+		if(logica.Cancela() == 1){
+			break;
+		}
+
 	logica.VotarSen2();
+
+		if(logica.Cancela() == 1){
+			break;
+		}
+
 	logica.VotarGov();
+
+		if(logica.Cancela() == 1){
+			break;
+		}
+
 	logica.VotarPres();
+	
+		if(logica.Cancela() == 1){
+			break;
+		}
 
 
 

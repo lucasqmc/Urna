@@ -180,12 +180,18 @@ return eleitor[0].numero_de_eleitores;
 
 }
 
+int LogicaUrna::Cancela(){
+
+return candidato[4].indCandidato_em_analise;
+
+}
+
 //_____Função MENU toda vez que o voto é realizado:       --****_*_*_*_*_*_*_*_*_*_*__*_*_*_*_*_*___*_**__--****_*_*_*_*_*_*_*_*_*_*__*_*_*_*_*_*___*_**__--****_*_
 
 void LogicaUrna::MenuPosVoto(){
 	char cmd;
 
-				cout<<"Digite:  1-Confirmar  2-Cancelar passo  Enter-Votar em branco 4-Cancelar Votação"<<endl;
+				cout<<"Digite:  1-CONFIRMA  2-CANCELAR PASSO  3-CANCELAR VOTAÇÃO  Enter e demais opções-BRANCO"<<endl;
 
 
 
@@ -291,9 +297,10 @@ void LogicaUrna::MenuPosVoto(){
 
 					else if(cmd == '2'){
 
-					// BOTÃO CANCELA:
+					// BOTÃO CANCELA PASSO:
 
 						cout << "PASSO CANCELADO !" << endl;
+						system("clear");
 
 
 							if(candidato[candidato[0].indCandidato_em_analise].cargo == "DEPUTADO FEDERAL" ){
@@ -343,10 +350,28 @@ void LogicaUrna::MenuPosVoto(){
 							
 							}
 
+							
+
+					}
+
+					else if(cmd == '3'){
+
+						// BOTÂO CANCELA VOTAÇÃO:
+						cout << "VOTAÇÃO CANCELADA !" << endl;
+						cout << endl;
+						cout << endl;
+						cout << endl;
+						candidato[4].indCandidato_em_analise = 1;
+
+						//////////////////////////////////////////
+
+						Cancela();
+
 					}				
 
 
 }
+
 
 
 //____Função para votar em Deputado Federal:
@@ -380,46 +405,63 @@ int aux = 0 ;
 		}while(codigo_cand_depfed.size()!=4);
 
 
-		for(i=0;i<=1237;i++){
+		
 
-			if(candidato[i].numero == codigo_cand_depfed){
+			for(i=0;i<=1237;i++){
 
-				aux = 1; // Variavel auxiliar ultilizada para detectar se foi achado o candidato .
+				if(candidato[i].numero == codigo_cand_depfed){
 
-					cout << "-------------------------------------" << endl;
+					aux = 1; // Variavel auxiliar ultilizada para detectar se foi achado o candidato .
 
-					cout<<"Nome: "<< candidato[i].nome_candidato << endl;
-					cout<<"Regiao: "<< candidato[i].regiao << endl;
-					cout<<"Cargo: "<< candidato[i].cargo << endl;
-					cout<<"Partido: "<< candidato[i].nome_partido << endl;
-					cout<<"Numero do partido: "<< candidato[i].numero_partido << endl;
+						cout << "-------------------------------------" << endl;
 
-					cout << "-------------------------------------" << endl;
+						cout<<"Nome: "<< candidato[i].nome_candidato << endl;
+						cout<<"Regiao: "<< candidato[i].regiao << endl;
+						cout<<"Cargo: "<< candidato[i].cargo << endl;
+						cout<<"Partido: "<< candidato[i].nome_partido << endl;
+						cout<<"Numero do partido: "<< candidato[i].numero_partido << endl;
 
-					//Passando indice do candidato no vetor  para atributo indCandidato_em_analise do objeto Candidato...
-					//Dessa maneira poderei armazenar o indice do candidato a ser votado em uma variavel independente.
+						cout << "-------------------------------------" << endl;
 
-					candidato[0].indCandidato_em_analise = i;	
-					
+						//Passando indice do candidato no vetor  para atributo indCandidato_em_analise do objeto Candidato...
+						//Dessa maneira poderei armazenar o indice do candidato a ser votado em uma variavel independente.
+
+						candidato[0].indCandidato_em_analise = i;	
+						
+
+				}
+		
+			}
+			
+			if(aux == 1){
+
+				MenuPosVoto();
+			}
+
+			else if(aux == 0){
+				char c;
+
+				cout << "Candidato não encontrado! tente novamente (aperte Enter) ou digite 3 para votar em branco." << endl;
+
+				cin.ignore();
+
+				c = getchar();
+
+				if(c == '3'){
+
+					cout << "VOTO BRANCO" << endl;
+
+					aux = 1;
+				}
 
 			}
-	
-		}
 		
-		if(aux == 1){
-
-			MenuPosVoto();
-		}
-
-		else if(aux == 0){
-
-			cout << "Candidato não encontrado! tente novamente." << endl;
-
-		}
 
 	}while(aux == 0);
 
 }
+
+
 
 //_____Função para votar em Deputado Distrital :
 
@@ -489,9 +531,20 @@ int aux = 0 ; // Variavel para auxiliar quando foi achado candidato,facilitando 
 
 		else if(aux == 0){
 
-			// Se nao foi achado candidato a variavel aux continua como zero e o laço while se repete. 
+						char c;
 
-			cout << "Candidato não encontrado! tente novamente." << endl;
+				cout << "Candidato não encontrado! tente novamente (aperte Enter) ou digite 3 para votar em branco." << endl;
+
+				cin.ignore();
+
+				c = getchar();
+
+				if(c == '3'){
+
+					cout << "VOTO BRANCO" << endl;
+
+					aux = 1;
+				}
 
 		}
 
@@ -615,8 +668,20 @@ int aux = 0 ;
 		}
 
 		else if(aux == 0){
+				char c;
 
-			cout << "Candidato não encontrado! tente novamente." << endl;
+				cout << "Candidato não encontrado! tente novamente (aperte Enter) ou digite 3 para votar em branco." << endl;
+
+				cin.ignore();
+
+				c = getchar();
+
+				if(c == '3'){
+
+					cout << "VOTO BRANCO" << endl;
+
+					aux = 1;
+				}
 
 		}
 
@@ -738,7 +803,20 @@ int aux = 0 ;
 
 		else if(aux == 0){
 
-			cout << "Candidato não encontrado! tente novamente." << endl;
+							char c;
+
+				cout << "Candidato não encontrado! tente novamente (aperte Enter) ou digite 3 para votar em branco." << endl;
+
+				cin.ignore();
+
+				c = getchar();
+
+				if(c == '3'){
+
+					cout << "VOTO BRANCO" << endl;
+
+					aux = 1;
+				}
 
 		}
 
@@ -829,7 +907,20 @@ int aux = 0 ;
 
 		else if(aux == 0){
 
-			cout << "Candidato não encontrado! tente novamente." << endl;
+							char c;
+
+				cout << "Candidato não encontrado! tente novamente (aperte Enter) ou digite 3 para votar em branco." << endl;
+
+				cin.ignore();
+
+				c = getchar();
+
+				if(c == '3'){
+
+					cout << "VOTO BRANCO" << endl;
+
+					aux = 1;
+				}
 
 		}
 
@@ -908,7 +999,6 @@ int aux = 0 ;
 
 					cout<<"-------------------------------------"<<endl;
 
-
 					candidato[1].indCandidato_em_analise = i;
 
 					
@@ -924,7 +1014,20 @@ int aux = 0 ;
 
 		else if(aux == 0){
 
-			cout << "Candidato não encontrado! tente novamente." << endl;
+							char c;
+
+				cout << "Candidato não encontrado! tente novamente (aperte Enter) ou digite 3 para votar em branco." << endl;
+
+				cin.ignore();
+
+				c = getchar();
+
+				if(c == '3'){
+
+					cout << "VOTO BRANCO" << endl;
+
+					aux = 1;
+				}
 
 		}
 
@@ -977,7 +1080,7 @@ string Sen1Ganhador;
 string Sen2Ganhador;
 string GovernadorGanhador;
 string PresidenteGanhador;
-
+	// Dep. Federal :
 	for(i=0;i<=1237;i++){
 
 			if(candidato[i].cargo == "DEPUTADO FEDERAL" ){
@@ -1026,6 +1129,61 @@ string PresidenteGanhador;
 
 
 	}
+/////////////////////////////////////////////////////////////////////////////////
+
+	// Dep. Distrital :
+	cont = 0 ;
+	maior = 0;
+
+	for(i=0;i<=1237;i++){
+
+			if(candidato[i].cargo == "DEPUTADO DISTRITAL" ){
+
+					if(candidato[i].numero_de_votos > maior ){
+
+						maior = candidato[i].numero_de_votos;
+						DepDistGanhador = candidato[i].nome_candidato;
+
+
+					}
+
+			}
+
+	}
+
+	for(i=0;i<=1237;i++){
+
+			if(candidato[i].cargo == "DEPUTADO DISTRITAL" ){
+
+					if(candidato[i].numero_de_votos == maior ){
+
+						cont++;
+
+
+					}
+
+			}
+
+	}
+
+
+
+	if(cont == 1){
+
+
+	cout << "Deputado Distrital Vencedor : " << DepDistGanhador << endl;		
+
+
+	}
+
+	else if(cont > 1){
+
+
+	cout << "Deputado Distrital Vencedor :  EMPATE " << endl;		
+
+
+	}
+/////////////////////////////////////////////////////////////////////////////////////////////
 
 	// SENADOR 1:
 
@@ -1047,7 +1205,6 @@ string PresidenteGanhador;
 			}
 
 	}
-
 
 
 	for(i=0;i<=1237;i++){
@@ -1081,6 +1238,7 @@ string PresidenteGanhador;
 
 
 	}
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
 	// SENADOR 2 :
 
@@ -1102,7 +1260,6 @@ string PresidenteGanhador;
 			}
 
 	}
-
 
 
 	for(i=0;i<=1237;i++){
@@ -1137,6 +1294,7 @@ string PresidenteGanhador;
 
 	}
 
+//////////////////////////////////////////////////////////////////////////////////////////////
 
 	// GOVERNADOR :
 
@@ -1192,6 +1350,7 @@ string PresidenteGanhador;
 
 
 	}
+///////////////////////////////////////////////////////////////////////////////////////
 
 	// PRESIDENTE :
 
