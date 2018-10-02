@@ -600,7 +600,7 @@ int aux = 0 ;
 
 				aux = 1; // Variavel auxiliar ultilizada para detectar se foi achado o candidato .
 
-
+					cout<<"-------------------------------------"<<endl;
 
 					cout<<"Nome: "<< candidato[i].nome_candidato << endl;
 					cout<<"Regiao: "<< candidato[i].regiao << endl;
@@ -632,6 +632,9 @@ int aux = 0 ;
 			if(candidato[i].numero == codigo_cand_sen && candidato[i].cargo == "1º SUPLENTE"){
 
 				aux = 1;
+				cout << endl;
+
+					cout<<"-------------------------------------"<<endl;
 
 					cout<<"Nome: "<< candidato[i].nome_candidato << endl;
 					cout<<"Regiao: "<< candidato[i].regiao << endl;
@@ -654,7 +657,10 @@ int aux = 0 ;
 
 					if(candidato[i].numero == codigo_cand_sen && candidato[i].cargo == "2º SUPLENTE"){
 
-					aux = 1; 
+					aux = 1;
+									cout << endl;
+				
+					cout<<"-------------------------------------"<<endl; 
 
 					cout<<"Nome: "<< candidato[i].nome_candidato << endl;
 					cout<<"Regiao: "<< candidato[i].regiao << endl;
@@ -733,7 +739,10 @@ int aux = 0 ;
 
 				//Achou segundo senador :
 
-				aux = 1; // Variavel auxiliar ultilizada para detectar se foi achado o candidato .
+				aux = 1;
+								cout << endl;
+				
+					cout<<"-------------------------------------"<<endl; // Variavel auxiliar ultilizada para detectar se foi achado o candidato .
 
 
 
@@ -764,6 +773,9 @@ int aux = 0 ;
 			if(candidato[i].numero == codigo_cand_sen2 && candidato[i].cargo == "1º SUPLENTE"){
 
 				aux = 1;
+								cout << endl;
+				
+					cout<<"-------------------------------------"<<endl;
 
 
 
@@ -787,7 +799,10 @@ int aux = 0 ;
 
 					if(candidato[i].numero == codigo_cand_sen2 && candidato[i].cargo == "2º SUPLENTE"){
 
-					aux = 1; 
+					aux = 1;
+									cout << endl;
+				
+					cout<<"-------------------------------------"<<endl; 
 
 
 
@@ -869,6 +884,9 @@ int aux = 0 ;
 			if(candidato[i].numero == codigo_cand_gov && candidato[i].cargo == "GOVERNADOR"){
 
 				aux = 1;
+								cout << endl;
+				
+					cout<<"-------------------------------------"<<endl;
 
 					cout<<"Nome: "<< candidato[i].nome_candidato << endl;
 					cout<<"Regiao: "<< candidato[i].regiao << endl;
@@ -972,6 +990,9 @@ int aux = 0 ;
 			if(candidato[i].numero == codigo_cand_pres && candidato[i].cargo == "PRESIDENTE"){
 
 				aux = 1;
+								
+				
+					cout<<"-------------------------------------"<<endl;
 
 
 
@@ -999,6 +1020,9 @@ int aux = 0 ;
 			if(candidato[i].numero == codigo_cand_pres && candidato[i].cargo == "VICE-PRESIDENTE"){
 
 				aux = 1;
+								cout << endl;
+				
+					cout<<"-------------------------------------"<<endl;
 
 
 
@@ -1027,7 +1051,7 @@ int aux = 0 ;
 
 							char c;
 
-				cout << "Candidato não encontrado! tente novamente (aperte Enter) ou digite 3 para votar em branco." << endl;
+				cout << "Candidato não encontrado!digite 3 para votar em branco ou aperte enter para continuar." << endl;
 
 				cin.ignore();
 
@@ -1060,8 +1084,10 @@ int i;
 		cout << endl;
 		cout << endl;	
 		cout << endl;
+		cout << "__________________________________" << endl;
+		cout << endl;
 	
-		cout << "Relatório de votos:" << endl;
+		cout << "-------- RELATÓRIO DE VOTOS: ---------" << endl;
 
 		cout << "__________________________________" << endl;
 		cout << endl;
