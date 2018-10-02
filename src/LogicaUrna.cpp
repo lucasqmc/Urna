@@ -367,6 +367,16 @@ void LogicaUrna::MenuPosVoto(){
 
 						Cancela();
 
+					}
+
+					else{
+						cout << "---------------------------" << endl;
+						cout << "VOTO BRANCO" << endl;
+						cout << "---------------------------" << endl;
+						cout << endl;
+
+
+
 					}				
 
 
@@ -973,6 +983,7 @@ int aux = 0 ;
 					cout << "Numero do partido: "<< candidato[i].numero_partido << endl;
 
 					cout<<"-------------------------------------"<<endl;
+					cout << endl ;
 
 					//Passando indice para o objeto candidato.
 					
@@ -1041,8 +1052,11 @@ int i;
 
 	for(i=0;i<eleitor[0].numero_de_eleitores ;i++){
 
-		
+		cout << "=========================================================" << endl;
+
 		cout << "NOME DO ELEITOR :    " << eleitor[i].nome_eleitor << endl;
+
+		cout << "=========================================================" << endl;
 		cout << endl;
 		cout << endl;	
 		cout << endl;
@@ -1080,6 +1094,7 @@ string Sen1Ganhador;
 string Sen2Ganhador;
 string GovernadorGanhador;
 string PresidenteGanhador;
+///////////////////////////////////////////////////////////////////////////////////////////////////
 	// Dep. Federal :
 	for(i=0;i<=1237;i++){
 
