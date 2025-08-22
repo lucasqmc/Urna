@@ -36,6 +36,8 @@ public:
 		string numero_partido;
 		string apelido_candidato;
 		string sigla_partido;
+		int senador;
+
 		int indCandidato_em_analise;
 		int numero_de_votos;
 

@@ -32,6 +32,7 @@ class LogicaUrna {
         void GerarRelatorio();
         void IndentificaGanhador();
         int RetornaNumeroEleitores();
+        int Cancela();
 
 
      

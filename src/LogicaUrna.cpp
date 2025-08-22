@@ -58,10 +58,6 @@ void LogicaUrna::Leitura1(){
 				getline(cp,candidato[i].numero_partido,',');
 				getline(cp,candidato[i].nome_partido,',');
 
-
-
-
-
 		}	
 
 		for(i=601;i<=1236;i++){
@@ -76,7 +72,6 @@ void LogicaUrna::Leitura1(){
 
 		}
 
-	
 
 	//Fechando arquivos dos candidatos do DF...
 
@@ -107,7 +102,6 @@ void LogicaUrna::Leitura2(){
 
                //Leitura dos dados do arquivo por meio da função getline(),Feito com dois for's para evitar erro de seguimentação.
 
-
 		for(i=1237;i<=1265;i++){
 
 				getline(cbr,candidato[i].regiao,',');
@@ -121,8 +115,6 @@ void LogicaUrna::Leitura2(){
 
 
 		}	
-
-	
 
 	//Fechando arquivos dos candidatos do DF...
 
@@ -145,10 +137,6 @@ void LogicaUrna::LimpaBuffer(){
 		cin.clear();
 		setbuf(stdin, NULL);
 
-
-		//**
-
-
 }
 
 
@@ -162,7 +150,6 @@ void LogicaUrna::UrnaConfig(){
 
 
 }
-
 
 //_____Função para ler nome do eleitor:
 
@@ -180,9 +167,6 @@ system("clear");
 
 	getline(cin,eleitor[eleitor[0].contaeleitor].nome_eleitor);
 
-
-
-
 	eleitor[0].contaeleitor++; //--> Essa variavel da classe eleitor é usada somente para contar em qual indice referente ao vetor dos  eleitores eu estou.
 
 }
@@ -194,6 +178,11 @@ int LogicaUrna::RetornaNumeroEleitores(){
 
 return eleitor[0].numero_de_eleitores;
 
+}
+
+int LogicaUrna::Cancela(){
+
+return candidato[4].indCandidato_em_analise;
 
 }
 
@@ -202,7 +191,7 @@ return eleitor[0].numero_de_eleitores;
 void LogicaUrna::MenuPosVoto(){
 	char cmd;
 
-				cout<<"Digite:  1-Confirmar  2-Cancelar passo  Enter-Votar em branco 4-Cancelar Votação"<<endl;
+				cout<<"Digite:  1-CONFIRMA  2-CANCELAR PASSO  3-CANCELAR VOTAÇÃO  Enter e demais opções-BRANCO"<<endl;
 
 
 
@@ -308,9 +297,10 @@ void LogicaUrna::MenuPosVoto(){
 
 					else if(cmd == '2'){
 
-					// BOTÃO CANCELA:
+					// BOTÃO CANCELA PASSO:
 
 						cout << "PASSO CANCELADO !" << endl;
+						system("clear");
 
 
 							if(candidato[candidato[0].indCandidato_em_analise].cargo == "DEPUTADO FEDERAL" ){
@@ -360,14 +350,37 @@ void LogicaUrna::MenuPosVoto(){
 							
 							}
 
+							
+
+					}
+
+					else if(cmd == '3'){
+
+						// BOTÂO CANCELA VOTAÇÃO:
+						cout << "VOTAÇÃO CANCELADA !" << endl;
+						cout << endl;
+						cout << endl;
+						cout << endl;
+						candidato[4].indCandidato_em_analise = 1;
+
+						//////////////////////////////////////////
+
+						Cancela();
+
+					}
+
+					else{
+						cout << "---------------------------" << endl;
+						cout << "VOTO BRANCO" << endl;
+						cout << "---------------------------" << endl;
+						cout << endl;
+
+
+
 					}				
 
 
 }
-
-
-
-
 
 
 
@@ -392,8 +405,6 @@ int aux = 0 ;
 
 			LimpaBuffer();
 	
-
-
 			cin >> codigo_cand_depfed;
 
 			if(codigo_cand_depfed.size()!=4){
@@ -404,46 +415,63 @@ int aux = 0 ;
 		}while(codigo_cand_depfed.size()!=4);
 
 
-		for(i=0;i<=1237;i++){
+		
 
-			if(candidato[i].numero == codigo_cand_depfed){
+			for(i=0;i<=1237;i++){
 
-				aux = 1; // Variavel auxiliar ultilizada para detectar se foi achado o candidato .
+				if(candidato[i].numero == codigo_cand_depfed){
 
-					cout << "-------------------------------------" << endl;
+					aux = 1; // Variavel auxiliar ultilizada para detectar se foi achado o candidato .
 
-					cout<<"Nome: "<< candidato[i].nome_candidato << endl;
-					cout<<"Regiao: "<< candidato[i].regiao << endl;
-					cout<<"Cargo: "<< candidato[i].cargo << endl;
-					cout<<"Partido: "<< candidato[i].nome_partido << endl;
-					cout<<"Numero do partido: "<< candidato[i].numero_partido << endl;
+						cout << "-------------------------------------" << endl;
 
-					cout << "-------------------------------------" << endl;
+						cout<<"Nome: "<< candidato[i].nome_candidato << endl;
+						cout<<"Regiao: "<< candidato[i].regiao << endl;
+						cout<<"Cargo: "<< candidato[i].cargo << endl;
+						cout<<"Partido: "<< candidato[i].nome_partido << endl;
+						cout<<"Numero do partido: "<< candidato[i].numero_partido << endl;
 
-					//Passando indice do candidato no vetor  para atributo indCandidato_em_analise do objeto Candidato...
-					//Dessa maneira poderei armazenar o indice do candidato a ser votado em uma variavel independente.
+						cout << "-------------------------------------" << endl;
 
-					candidato[0].indCandidato_em_analise = i;	
-					
+						//Passando indice do candidato no vetor  para atributo indCandidato_em_analise do objeto Candidato...
+						//Dessa maneira poderei armazenar o indice do candidato a ser votado em uma variavel independente.
+
+						candidato[0].indCandidato_em_analise = i;	
+						
+
+				}
+		
+			}
+			
+			if(aux == 1){
+
+				MenuPosVoto();
+			}
+
+			else if(aux == 0){
+				char c;
+
+				cout << "Candidato não encontrado! tente novamente (aperte Enter) ou digite 3 para votar em branco." << endl;
+
+				cin.ignore();
+
+				c = getchar();
+
+				if(c == '3'){
+
+					cout << "VOTO BRANCO" << endl;
+
+					aux = 1;
+				}
 
 			}
-	
-		}
 		
-		if(aux == 1){
-
-			MenuPosVoto();
-		}
-
-		else if(aux == 0){
-
-			cout << "Candidato não encontrado! tente novamente." << endl;
-
-		}
 
 	}while(aux == 0);
 
 }
+
+
 
 //_____Função para votar em Deputado Distrital :
 
@@ -513,9 +541,20 @@ int aux = 0 ; // Variavel para auxiliar quando foi achado candidato,facilitando 
 
 		else if(aux == 0){
 
-			// Se nao foi achado candidato a variavel aux continua como zero e o laço while se repete. 
+						char c;
 
-			cout << "Candidato não encontrado! tente novamente." << endl;
+				cout << "Candidato não encontrado! tente novamente (aperte Enter) ou digite 3 para votar em branco." << endl;
+
+				cin.ignore();
+
+				c = getchar();
+
+				if(c == '3'){
+
+					cout << "VOTO BRANCO" << endl;
+
+					aux = 1;
+				}
 
 		}
 
@@ -561,7 +600,7 @@ int aux = 0 ;
 
 				aux = 1; // Variavel auxiliar ultilizada para detectar se foi achado o candidato .
 
-
+					cout<<"-------------------------------------"<<endl;
 
 					cout<<"Nome: "<< candidato[i].nome_candidato << endl;
 					cout<<"Regiao: "<< candidato[i].regiao << endl;
@@ -570,6 +609,8 @@ int aux = 0 ;
 					cout<<"Numero do partido: "<< candidato[i].numero_partido << endl;
 
 					cout<<"-------------------------------------"<<endl;
+
+					candidato[i].senador = 1;
 
 					//Passando indice para o objeto candidato.
 					
@@ -591,8 +632,9 @@ int aux = 0 ;
 			if(candidato[i].numero == codigo_cand_sen && candidato[i].cargo == "1º SUPLENTE"){
 
 				aux = 1;
+				cout << endl;
 
-
+					cout<<"-------------------------------------"<<endl;
 
 					cout<<"Nome: "<< candidato[i].nome_candidato << endl;
 					cout<<"Regiao: "<< candidato[i].regiao << endl;
@@ -615,9 +657,10 @@ int aux = 0 ;
 
 					if(candidato[i].numero == codigo_cand_sen && candidato[i].cargo == "2º SUPLENTE"){
 
-					aux = 1; 
-
-
+					aux = 1;
+									cout << endl;
+				
+					cout<<"-------------------------------------"<<endl; 
 
 					cout<<"Nome: "<< candidato[i].nome_candidato << endl;
 					cout<<"Regiao: "<< candidato[i].regiao << endl;
@@ -635,15 +678,26 @@ int aux = 0 ;
 
 		}
 
-
 		if(aux == 1){
 
 			MenuPosVoto();
 		}
 
 		else if(aux == 0){
+				char c;
 
-			cout << "Candidato não encontrado! tente novamente." << endl;
+				cout << "Candidato não encontrado! tente novamente (aperte Enter) ou digite 3 para votar em branco." << endl;
+
+				cin.ignore();
+
+				c = getchar();
+
+				if(c == '3'){
+
+					cout << "VOTO BRANCO" << endl;
+
+					aux = 1;
+				}
 
 		}
 
@@ -685,7 +739,10 @@ int aux = 0 ;
 
 				//Achou segundo senador :
 
-				aux = 1; // Variavel auxiliar ultilizada para detectar se foi achado o candidato .
+				aux = 1;
+								cout << endl;
+				
+					cout<<"-------------------------------------"<<endl; // Variavel auxiliar ultilizada para detectar se foi achado o candidato .
 
 
 
@@ -696,6 +753,7 @@ int aux = 0 ;
 					cout<<"Numero do partido: "<< candidato[i].numero_partido << endl;
 
 					cout<<"-------------------------------------"<<endl;
+					candidato[i].senador = 2;
 
 					//Passando indice para o objeto candidato.
 					
@@ -715,6 +773,9 @@ int aux = 0 ;
 			if(candidato[i].numero == codigo_cand_sen2 && candidato[i].cargo == "1º SUPLENTE"){
 
 				aux = 1;
+								cout << endl;
+				
+					cout<<"-------------------------------------"<<endl;
 
 
 
@@ -738,7 +799,10 @@ int aux = 0 ;
 
 					if(candidato[i].numero == codigo_cand_sen2 && candidato[i].cargo == "2º SUPLENTE"){
 
-					aux = 1; 
+					aux = 1;
+									cout << endl;
+				
+					cout<<"-------------------------------------"<<endl; 
 
 
 
@@ -755,8 +819,6 @@ int aux = 0 ;
 
 									
 			}
-
-
 		}
 
 		if(aux == 1){
@@ -766,7 +828,20 @@ int aux = 0 ;
 
 		else if(aux == 0){
 
-			cout << "Candidato não encontrado! tente novamente." << endl;
+							char c;
+
+				cout << "Candidato não encontrado! tente novamente (aperte Enter) ou digite 3 para votar em branco." << endl;
+
+				cin.ignore();
+
+				c = getchar();
+
+				if(c == '3'){
+
+					cout << "VOTO BRANCO" << endl;
+
+					aux = 1;
+				}
 
 		}
 
@@ -809,6 +884,9 @@ int aux = 0 ;
 			if(candidato[i].numero == codigo_cand_gov && candidato[i].cargo == "GOVERNADOR"){
 
 				aux = 1;
+								cout << endl;
+				
+					cout<<"-------------------------------------"<<endl;
 
 					cout<<"Nome: "<< candidato[i].nome_candidato << endl;
 					cout<<"Regiao: "<< candidato[i].regiao << endl;
@@ -857,7 +935,20 @@ int aux = 0 ;
 
 		else if(aux == 0){
 
-			cout << "Candidato não encontrado! tente novamente." << endl;
+							char c;
+
+				cout << "Candidato não encontrado! tente novamente (aperte Enter) ou digite 3 para votar em branco." << endl;
+
+				cin.ignore();
+
+				c = getchar();
+
+				if(c == '3'){
+
+					cout << "VOTO BRANCO" << endl;
+
+					aux = 1;
+				}
 
 		}
 
@@ -899,6 +990,9 @@ int aux = 0 ;
 			if(candidato[i].numero == codigo_cand_pres && candidato[i].cargo == "PRESIDENTE"){
 
 				aux = 1;
+								
+				
+					cout<<"-------------------------------------"<<endl;
 
 
 
@@ -910,6 +1004,7 @@ int aux = 0 ;
 					cout << "Numero do partido: "<< candidato[i].numero_partido << endl;
 
 					cout<<"-------------------------------------"<<endl;
+					cout << endl ;
 
 					//Passando indice para o objeto candidato.
 					
@@ -925,6 +1020,9 @@ int aux = 0 ;
 			if(candidato[i].numero == codigo_cand_pres && candidato[i].cargo == "VICE-PRESIDENTE"){
 
 				aux = 1;
+								cout << endl;
+				
+					cout<<"-------------------------------------"<<endl;
 
 
 
@@ -935,7 +1033,6 @@ int aux = 0 ;
 					cout<<"Numero do partido: "<< candidato[i].numero_partido << endl;
 
 					cout<<"-------------------------------------"<<endl;
-
 
 					candidato[1].indCandidato_em_analise = i;
 
@@ -952,7 +1049,20 @@ int aux = 0 ;
 
 		else if(aux == 0){
 
-			cout << "Candidato não encontrado! tente novamente." << endl;
+							char c;
+
+				cout << "Candidato não encontrado!digite 3 para votar em branco ou aperte enter para continuar." << endl;
+
+				cin.ignore();
+
+				c = getchar();
+
+				if(c == '3'){
+
+					cout << "VOTO BRANCO" << endl;
+
+					aux = 1;
+				}
 
 		}
 
@@ -966,13 +1076,18 @@ int i;
 
 	for(i=0;i<eleitor[0].numero_de_eleitores ;i++){
 
-		
+		cout << "=========================================================" << endl;
+
 		cout << "NOME DO ELEITOR :    " << eleitor[i].nome_eleitor << endl;
+
+		cout << "=========================================================" << endl;
 		cout << endl;
 		cout << endl;	
 		cout << endl;
+		cout << "__________________________________" << endl;
+		cout << endl;
 	
-		cout << "Relatório de votos:" << endl;
+		cout << "-------- RELATÓRIO DE VOTOS: ---------" << endl;
 
 		cout << "__________________________________" << endl;
 		cout << endl;
@@ -997,10 +1112,16 @@ int i;
 void LogicaUrna::IndentificaGanhador(){
 
 int i;
-
 int maior = 0;
+int cont = 0;
 string DepFedGanhador;
-
+string DepDistGanhador;
+string Sen1Ganhador;
+string Sen2Ganhador;
+string GovernadorGanhador;
+string PresidenteGanhador;
+///////////////////////////////////////////////////////////////////////////////////////////////////
+	// Dep. Federal :
 	for(i=0;i<=1237;i++){
 
 			if(candidato[i].cargo == "DEPUTADO FEDERAL" ){
@@ -1017,9 +1138,320 @@ string DepFedGanhador;
 
 	}
 
-cout << "Deputado Federal Vencedor : " << DepFedGanhador << endl;		
+	for(i=0;i<=1237;i++){
+
+			if(candidato[i].cargo == "DEPUTADO FEDERAL" ){
+
+					if(candidato[i].numero_de_votos == maior ){
+
+						cont++;
+
+
+					}
+
+			}
+
+	}
+
+
+
+	if(cont == 1){
+
+
+	cout << "Deputado Federal Vencedor : " << DepFedGanhador << endl;		
+
+
+	}
+
+	else if(cont > 1){
+
+
+	cout << "Deputado Federal Vencedor :  EMPATE " << endl;		
+
+
+	}
+/////////////////////////////////////////////////////////////////////////////////
+
+	// Dep. Distrital :
+	cont = 0 ;
+	maior = 0;
+
+	for(i=0;i<=1237;i++){
+
+			if(candidato[i].cargo == "DEPUTADO DISTRITAL" ){
+
+					if(candidato[i].numero_de_votos > maior ){
+
+						maior = candidato[i].numero_de_votos;
+						DepDistGanhador = candidato[i].nome_candidato;
+
+
+					}
+
+			}
+
+	}
+
+	for(i=0;i<=1237;i++){
+
+			if(candidato[i].cargo == "DEPUTADO DISTRITAL" ){
+
+					if(candidato[i].numero_de_votos == maior ){
+
+						cont++;
+
+
+					}
+
+			}
+
+	}
+
+
+
+	if(cont == 1){
+
+
+	cout << "Deputado Distrital Vencedor : " << DepDistGanhador << endl;		
+
+
+	}
+
+	else if(cont > 1){
+
+
+	cout << "Deputado Distrital Vencedor :  EMPATE " << endl;		
+
+
+	}
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+	// SENADOR 1:
+
+	cont = 0 ;
+	maior = 0;
+
+		for(i=0;i<=1237;i++){
+
+			if(candidato[i].cargo == "SENADOR" && candidato[i].senador == 1 ){
+
+					if(candidato[i].numero_de_votos > maior ){
+
+						maior = candidato[i].numero_de_votos;
+						Sen1Ganhador = candidato[i].nome_candidato;
+
+
+					} 
+
+			}
+
+	}
+
+
+	for(i=0;i<=1237;i++){
+
+			if(candidato[i].cargo == "SENADOR" && candidato[i].senador == 1 ){
+
+					if(candidato[i].numero_de_votos == maior ){
+
+						cont++;
+
+
+					}
+
+			}
+
+	}
+
+
+	if(cont == 1){
+
+
+	cout << "1º Senador Vencedor : " << Sen1Ganhador << endl;		
+
+
+	}
+
+	else if(cont > 1){
+
+
+	cout << "1º Senador Vencedor :  EMPATE " << endl;		
+
+
+	}
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+	// SENADOR 2 :
+
+	cont = 0 ;
+	maior = 0;
+
+		for(i=0;i<=1237;i++){
+
+			if(candidato[i].cargo == "SENADOR" && candidato[i].senador == 2 ){
+
+					if(candidato[i].numero_de_votos > maior ){
+
+						maior = candidato[i].numero_de_votos;
+						Sen2Ganhador = candidato[i].nome_candidato;
+
+
+					} 
+
+			}
+
+	}
+
+
+	for(i=0;i<=1237;i++){
+
+			if(candidato[i].cargo == "SENADOR" && candidato[i].senador == 2 ){
+
+					if(candidato[i].numero_de_votos == maior ){
+
+						cont++;
+
+
+					}
+
+			}
+
+	}
+
+
+	if(cont == 1){
+
+
+	cout << "2º Senador Vencedor : " << Sen2Ganhador << endl;		
+
+
+	}
+
+	else if(cont > 1){
+
+
+	cout << "2º Senador Vencedor :  EMPATE " << endl;		
+
+
+	}
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+	// GOVERNADOR :
+
+	cont = 0 ;
+	maior = 0;
+
+		for(i=0;i<=1237;i++){
+
+			if(candidato[i].cargo == "GOVERNADOR" ){
+
+					if(candidato[i].numero_de_votos > maior ){
+
+						maior = candidato[i].numero_de_votos;
+						GovernadorGanhador = candidato[i].nome_candidato;
+
+
+					} 
+
+			}
+
+	}
+
+
+
+	for(i=0;i<=1237;i++){
+
+			if(candidato[i].cargo == "GOVERNADOR"){
+
+					if(candidato[i].numero_de_votos == maior ){
+
+						cont++;
+
+
+					}
+
+			}
+
+	}
+
+
+	if(cont == 1){
+
+
+	cout << "Governador Vencedor : " << GovernadorGanhador << endl;		
+
+
+	}
+
+	else if(cont > 1){
+
+
+	cout << "Governador Vencedor :  EMPATE " << endl;		
+
+
+	}
+///////////////////////////////////////////////////////////////////////////////////////
+
+	// PRESIDENTE :
+
+	cont = 0 ;
+	maior = 0;
+
+		for(i=1237;i<=1265;i++){
+
+			if(candidato[i].cargo == "PRESIDENTE" ){
+
+					if(candidato[i].numero_de_votos > maior ){
+
+						maior = candidato[i].numero_de_votos;
+						PresidenteGanhador = candidato[i].nome_candidato;
+
+
+					} 
+
+			}
+
+	}
+
+
+
+	for(i=1237;i<=1265;i++){
+
+			if(candidato[i].cargo == "PRESIDENTE"){
+
+					if(candidato[i].numero_de_votos == maior ){
+
+						cont++;
+
+
+					}
+
+			}
+
+	}
+
+
+	if(cont == 1){
+
+
+	cout << "Presidente Vencedor : " << PresidenteGanhador << endl;		
+
+
+	}
+
+	else if(cont > 1){
+
+
+	cout << "Presidente Vencedor :  EMPATE " << endl;		
+
+
+	}
 
 
 }
+
+
+
 
 

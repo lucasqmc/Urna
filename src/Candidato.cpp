@@ -23,6 +23,8 @@ Candidato::Candidato(){
 
 	sigla_partido = "";
 
+	senador = 0;
+
 
 
 
